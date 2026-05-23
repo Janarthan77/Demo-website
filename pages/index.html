@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Portfolio | Home</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    .video-wrapper { position: relative; width: 100%; padding-bottom: 56.25%; background-color: var(--bg-tertiary); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); margin-bottom: 2rem; }
+    .video-wrapper iframe, .video-wrapper video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+    .case-study-card { background-color: var(--bg-secondary); border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition); cursor: pointer; display: flex; flex-direction: column; }
+    .case-study-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-5px); }
+    .case-img { width: 100%; aspect-ratio: 16/9; background: var(--border); overflow: hidden; }
+    .case-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .case-study-card:hover .case-img img { transform: scale(1.05); }
+    .case-content { padding: 2rem; flex: 1; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div>
+        <span>STUDIO</span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link active">
+          HOME
+          <span class="nav-underline"></span>
+        </a>
+        <a href="reels.html" class="nav-link">
+          REELS
+          <span class="nav-underline"></span>
+        </a>
+        <a href="software.html" class="nav-link">
+          SOFTWARE
+          <span class="nav-underline"></span>
+        </a>
+        <a href="projects.html" class="nav-link">
+          PROJECTS
+          <span class="nav-underline"></span>
+        </a>
+        <a href="process.html" class="nav-link">
+          PROCESS
+          <span class="nav-underline"></span>
+        </a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="control-btn" id="themeToggle" title="Toggle Theme">
+          <svg class="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="theme-icon-light" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+        <div class="header-ctas">
+          <a href="contact.html" class="btn btn-primary">START A PROJECT</a>
+        </div>
+        <button class="mobile-toggle" id="mobileMenuToggle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. HERO SECTION -->
+  <section class="hero" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('/assets/images/banner_home.png') center/cover no-repeat; padding-top: calc(var(--header-height) + 6rem); min-height: 85vh; display: flex; align-items: center; color: white;">
+    <div class="container fade-up" style="text-align: center; max-width: 900px;">
+      <div class="badge" style="margin: 0 auto 2rem;">
+        <span class="badge-dot"></span> AVAILABLE FOR FREELANCE
+      </div>
+      <h1 class="hero-title" style="font-size: 5rem; margin-bottom: 2rem;">
+        Visual Storytelling.<br>
+        <span style="color: rgba(255,255,255,0.6);">Technical Precision.</span>
+      </h1>
+      <p class="hero-description" style="font-size: 1.25rem; margin: 0 auto 3rem;">
+        I craft compelling demo reels, high-fidelity visual effects, and dynamic motion graphics that elevate brands and captivate audiences globally.
+      </p>
+      <div class="btn-group center">
+        <a href="reels.html" class="btn btn-primary" style="padding-inline: 3rem;">Watch Demo Reels</a>
+        <a href="contact.html" class="btn btn-secondary" style="padding-inline: 3rem;">Project Inquiry</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. FEATURED WORK HIGHLIGHT -->
+  <section>
+    <div class="container">
+      <div class="section-header center fade-up">
+        <h2>Featured Campaign</h2>
+        <p>A deep dive into my most recent flagship project.</p>
+      </div>
+      <div class="case-study-card fade-up delay-100" style="flex-direction: row; flex-wrap: wrap;">
+        <div class="case-img" style="flex: 1 1 500px; aspect-ratio: 16/9;">
+          <img src="/assets/images/case1.png" alt="Tech Launch Campaign">
+        </div>
+        <div class="case-content" style="flex: 1 1 300px; display: flex; flex-direction: column; justify-content: center;">
+          <span class="badge" style="margin-bottom: 1rem; background: var(--bg-tertiary); align-self: flex-start;">Motion Graphics</span>
+          <h3 style="font-size: 2.5rem; margin-bottom: 1rem;">Tech Product Launch</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem;">Designed and animated a global product launch video for a Fortune 500 tech brand. Handled full 3D product rendering, kinetic typography, and final compositing.</p>
+          <a href="projects.html" class="btn btn-secondary" style="align-self: flex-start;">View Full Case Study</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. CORE PHILOSOPHY -->
+  <section style="background-color: var(--bg-secondary);">
+    <div class="container center fade-up" style="max-width: 800px;">
+      <h2 style="font-size: 3rem; margin-bottom: 2rem;">The Philosophy</h2>
+      <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+        Great editing isn't just about flashy transitions. It's about rhythm, pacing, and emotional resonance. I approach every project—whether it's a 15-second social ad or a feature film VFX shot—with absolute dedication to the story.
+      </p>
+      <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8;">
+        My pipeline relies on the most advanced, industry-standard tools available, ensuring that the final deliverable isn't just beautiful, but technically flawless and ready for broadcast.
+      </p>
+    </div>
+  </section>
+
+  <!-- 4. SERVICES SUMMARY -->
+  <section>
+    <div class="container">
+      <div class="section-header center fade-up">
+        <h2>Core Disciplines</h2>
+        <p>Expertise across the entire post-production pipeline.</p>
+      </div>
+      <div class="grid grid-3 fade-up delay-100">
+        <div class="card" style="text-align: center;">
+          <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Motion Graphics</h3>
+          <p style="color: var(--text-secondary);">Dynamic 2D and 3D kinetic typography, animated branding, and explainer animations using After Effects and Cinema 4D.</p>
+        </div>
+        <div class="card" style="text-align: center;">
+          <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">VFX Compositing</h3>
+          <p style="color: var(--text-secondary);">Rotoscoping, green screen keying, set extensions, and CGI integration using The Foundry Nuke and After Effects.</p>
+        </div>
+        <div class="card" style="text-align: center;">
+          <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Offline/Online Editing</h3>
+          <p style="color: var(--text-secondary);">Narrative editing, commercial pacing, multi-cam sync, and high-fidelity finishing in Premiere Pro and DaVinci Resolve.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CLIENT LOGOS -->
+  <section style="background-color: var(--bg-tertiary);">
+    <div class="container center fade-up" style="text-align: center;">
+      <p style="font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 2.5rem;">Trusted by forward-thinking teams</p>
+      <div style="display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; opacity: 0.6;">
+        <svg height="30" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-family="Poppins" font-size="20" font-weight="bold">Acme Corp</text></svg>
+        <svg height="30" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-family="Poppins" font-size="20" font-weight="bold">GlobalNet</text></svg>
+        <svg height="30" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-family="Poppins" font-size="20" font-weight="bold">TechFlow</text></svg>
+        <svg height="30" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-family="Poppins" font-size="20" font-weight="bold">Innovate</text></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. CTA BANNER -->
+  <section style="background-color: var(--primary); color: var(--secondary); text-align: center;">
+    <div class="container fade-up" style="max-width: 700px;">
+      <h2 style="font-size: 3rem; margin-bottom: 1.5rem; color: var(--secondary);">Have a project in mind?</h2>
+      <p style="font-size: 1.25rem; margin-bottom: 2.5rem; color: var(--secondary);">Fill out the project inquiry form to receive a custom quote and timeline.</p>
+      <div class="magnetic-wrap">
+        <a href="contact.html" class="btn btn-white" style="padding-inline: 3rem;">Submit Project Inquiry</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col" style="grid-column: span 2;">
+          <a href="index.html" class="logo" style="margin-bottom: 1.5rem; display: inline-flex;">
+            <div class="logo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div>
+            <span>STUDIO</span>
+          </a>
+          <p style="margin-bottom: 1.5rem;">Independent Creative Direction, Motion Graphics, and Visual Effects.</p>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <div class="footer-links">
+            <a href="reels.html">Demo Reels</a>
+            <a href="software.html">Software</a>
+            <a href="projects.html">Case Studies</a>
+            <a href="process.html">Process & Times</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Social</h4>
+          <div class="footer-links">
+            <a href="#">Vimeo</a>
+            <a href="#">Behance</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Instagram</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div>&copy; 2026 Creative Studio. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
+  <script src="/assets/js/script.js"></script>
+</body>
+</html>

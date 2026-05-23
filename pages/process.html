@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Portfolio | Process & Times</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    .time-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+    .time-table th, .time-table td { padding: 1.5rem; border-bottom: 1px solid var(--border); text-align: left; }
+    .time-table th { font-weight: 700; color: var(--text-primary); background-color: var(--bg-secondary); }
+    .time-table tr:hover { background-color: var(--bg-tertiary); }
+    .step-card { background: var(--bg-secondary); padding: 2.5rem; border-radius: var(--radius-lg); position: relative; border-left: 4px solid var(--primary); }
+    .step-number { position: absolute; top: 1rem; right: 1.5rem; font-size: 4rem; font-weight: 800; opacity: 0.1; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div>
+        <span>STUDIO</span>
+      </a>
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">
+          HOME
+          <span class="nav-underline"></span>
+        </a>
+        <a href="reels.html" class="nav-link">
+          REELS
+          <span class="nav-underline"></span>
+        </a>
+        <a href="software.html" class="nav-link">
+          SOFTWARE
+          <span class="nav-underline"></span>
+        </a>
+        <a href="projects.html" class="nav-link">
+          PROJECTS
+          <span class="nav-underline"></span>
+        </a>
+        <a href="process.html" class="nav-link active">
+          PROCESS
+          <span class="nav-underline"></span>
+        </a>
+      </nav>
+      <div class="header-actions">
+        <button class="control-btn" id="themeToggle" title="Toggle Theme">
+          <svg class="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="theme-icon-light" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+        <div class="header-ctas">
+          <a href="contact.html" class="btn btn-primary">START A PROJECT</a>
+        </div>
+        <button class="mobile-toggle" id="mobileMenuToggle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. HERO SECTION -->
+  <section class="hero" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('/assets/images/banner_process.png') center/cover no-repeat; padding-top: calc(var(--header-height) + 6rem); padding-bottom: 4rem; text-align: center; color: white;">
+    <div class="container fade-up">
+      <h1 class="hero-title" style="font-size: 4rem; margin-bottom: 1rem;">Process & Timelines</h1>
+      <p class="hero-description" style="font-size: 1.25rem; margin: 0 auto; max-width: 700px;">
+        High-end creative work requires structured, transparent pipelines. Review my baseline schedules and onboarding process below.
+      </p>
+    </div>
+  </section>
+
+  <!-- 2. TURNAROUND ESTIMATES TABLE -->
+  <section>
+    <div class="container fade-up">
+      <div class="section-header">
+        <h2>Standard Turnaround Estimates</h2>
+        <p>Baseline schedules for common deliverables. Final timelines depend on actual project scope.</p>
+      </div>
+      <div style="overflow-x: auto;">
+        <table class="time-table">
+          <thead>
+            <tr>
+              <th>Project Type</th>
+              <th>Complexity</th>
+              <th>Est. Turnaround</th>
+              <th>Included Revisions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Short-Form Social Media (Reels/TikTok)</td>
+              <td>Low - Medium</td>
+              <td>24 - 48 Hours</td>
+              <td>1 Round</td>
+            </tr>
+            <tr>
+              <td>Corporate Interview / Talking Head</td>
+              <td>Medium</td>
+              <td>3 - 5 Business Days</td>
+              <td>2 Rounds</td>
+            </tr>
+            <tr>
+              <td>2D Explainer Animation (60s)</td>
+              <td>Medium - High</td>
+              <td>2 - 3 Weeks</td>
+              <td>3 Rounds</td>
+            </tr>
+            <tr>
+              <td>3D Product Rendering & Animation</td>
+              <td>High</td>
+              <td>3 - 4 Weeks</td>
+              <td>3 Rounds</td>
+            </tr>
+            <tr>
+              <td>VFX Shot Work (Cleanups/Compositing)</td>
+              <td>Variable</td>
+              <td>Quoted per shot</td>
+              <td>2 Rounds</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. ONBOARDING PROCESS -->
+  <section style="background-color: var(--bg-secondary);">
+    <div class="container fade-up">
+      <div class="section-header center">
+        <h2>The 3-Step Pipeline</h2>
+        <p>How we move from initial contact to final delivery.</p>
+      </div>
+      <div class="grid grid-3 delay-100">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Discovery & Quote</h3>
+          <p style="color: var(--text-secondary);">You submit an inquiry. We hop on a 15-minute call to align on creative vision, deadlines, and budget. I send over a formal SOW and quote.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Asset Handoff & Edit</h3>
+          <p style="color: var(--text-secondary);">You provide footage, brand guidelines, and assets via Frame.io or Drive. I begin the offline edit and motion graphics blockout.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Review & Final Delivery</h3>
+          <p style="color: var(--text-secondary);">You review V1 via Frame.io. We iterate through the agreed revision rounds. Final masters are delivered in requested codecs (ProRes, H.264).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. REVISIONS POLICY -->
+  <section>
+    <div class="container fade-up center" style="max-width: 800px; text-align: center;">
+      <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Clear Revision Policies</h2>
+      <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+        Revisions are a natural part of the creative process. To prevent scope creep, all quotes explicitly define the number of revision rounds included (typically 2 to 3). 
+      </p>
+      <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8;">
+        Additional rounds or total creative pivots requested after V1 are billed at my standard hourly rate of $150/hr. I use Frame.io for all review links, allowing you to leave precise, frame-accurate notes to ensure nothing gets lost in translation.
+      </p>
+    </div>
+  </section>
+
+  <!-- 5. FAQ -->
+  <section style="background-color: var(--bg-tertiary);">
+    <div class="container fade-up" style="max-width: 800px;">
+      <div class="section-header center">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0;">
+        <div class="accordion">
+          <button class="accordion-header">Do you work on a day rate or project rate?<div class="accordion-icon"></div></button>
+          <div class="accordion-content"><p style="color: var(--text-secondary); line-height: 1.6;">I highly prefer quoting a flat Project Rate. It aligns our incentives: you get a guaranteed price without worrying about billable hours, and I am rewarded for my speed and efficiency.</p></div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header">Can you deliver open project files?<div class="accordion-icon"></div></button>
+          <div class="accordion-content"><p style="color: var(--text-secondary); line-height: 1.6;">Yes, project files (Premiere/AE/C4D) can be handed over upon project completion, but they are subject to an additional buyout fee depending on the project scope.</p></div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header">Do you handle sound design and mixing?<div class="accordion-icon"></div></button>
+          <div class="accordion-content"><p style="color: var(--text-secondary); line-height: 1.6;">Absolutely. Standard sound design, SFX, and stereo mixing are included in my editing pipeline to ensure the video sounds as good as it looks.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. CTA BANNER -->
+  <section style="background-color: var(--primary); color: var(--secondary); text-align: center;">
+    <div class="container fade-up" style="max-width: 700px;">
+      <h2 style="font-size: 3rem; margin-bottom: 1.5rem; color: var(--secondary);">Ready to start?</h2>
+      <p style="font-size: 1.25rem; margin-bottom: 2.5rem; color: var(--secondary);">Fill out the project inquiry form to begin step one of the pipeline.</p>
+      <div class="magnetic-wrap">
+        <a href="contact.html" class="btn btn-white" style="padding-inline: 3rem;">Submit Project Inquiry</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col" style="grid-column: span 2;">
+          <a href="index.html" class="logo" style="margin-bottom: 1.5rem; display: inline-flex;"><div class="logo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div><span>STUDIO</span></a>
+          <p style="margin-bottom: 1.5rem;">Independent Creative Direction, Motion Graphics, and Visual Effects.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <div class="footer-links"><a href="reels.html">Demo Reels</a><a href="software.html">Software</a><a href="projects.html">Case Studies</a><a href="process.html">Process & Times</a></div>
+        </div>
+        <div class="footer-col">
+          <h4>Social</h4>
+          <div class="footer-links"><a href="#">Vimeo</a><a href="#">Behance</a><a href="#">LinkedIn</a><a href="#">Instagram</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><div>&copy; 2026 Creative Studio. All rights reserved.</div></div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
+  <script src="/assets/js/script.js"></script>
+</body>
+</html>
