@@ -6,14 +6,138 @@
   <title>Creative Portfolio | Home</title>
   <link rel="stylesheet" href="/assets/css/style.css">
   <style>
+    /* ── Video wrapper ── */
     .video-wrapper { position: relative; width: 100%; padding-bottom: 56.25%; background-color: var(--bg-tertiary); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); margin-bottom: 2rem; }
     .video-wrapper iframe, .video-wrapper video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── Case study card ── */
     .case-study-card { background-color: var(--bg-secondary); border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition); cursor: pointer; display: flex; flex-direction: column; }
     .case-study-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-5px); }
     .case-img { width: 100%; aspect-ratio: 16/9; background: var(--border); overflow: hidden; }
     .case-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
     .case-study-card:hover .case-img img { transform: scale(1.05); }
     .case-content { padding: 2rem; flex: 1; }
+
+    /* ── Hero stat counters ── */
+    .hero-stats { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.15); }
+    .hero-stat-item { text-align: center; flex: 1 1 120px; }
+    .hero-stat-item .stat-counter { font-size: 2.25rem; font-weight: 800; color: #fff; line-height: 1; display: block; }
+    .hero-stat-item .stat-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.55); margin-top: 0.4rem; display: block; }
+    @media (max-width: 600px) {
+      .hero-stats { gap: 1.25rem; }
+      .hero-stat-item .stat-counter { font-size: 1.75rem; }
+      .hero-stat-item .stat-label { font-size: 0.65rem; letter-spacing: 1px; }
+    }
+
+    /* ── Featured campaign extras ── */
+    .tool-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .tool-pill { background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 999px; padding: 0.25rem 0.85rem; font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); }
+    .result-metrics { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .metric-box { background: var(--bg-tertiary); border-radius: var(--radius-lg); padding: 0.9rem 1.2rem; text-align: center; flex: 1 1 80px; }
+    .metric-box .metric-val { font-size: 1.6rem; font-weight: 800; color: var(--primary); display: block; line-height: 1.1; }
+    .metric-box .metric-lbl { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+
+    /* ── Stats banner ── */
+    .stats-banner { background: #0a0a0a; color: #fff; padding: 4rem 0; }
+    .stats-banner .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; text-align: center; }
+    .stats-banner .stat-block { padding: 2.5rem 1.5rem; border-right: 1px solid rgba(255,255,255,0.08); }
+    .stats-banner .stat-block:last-child { border-right: none; }
+    .stats-banner .stat-counter { font-size: 3.5rem; font-weight: 900; line-height: 1; display: block; background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.6) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .stats-banner .stat-sub { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.45); margin-top: 0.75rem; display: block; }
+    .stats-banner .stat-desc { font-size: 0.95rem; font-weight: 600; color: rgba(255,255,255,0.8); margin-top: 0.3rem; display: block; }
+    @media (max-width: 768px) {
+      .stats-banner .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-banner .stat-block { border-right: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 2rem 1rem; }
+      .stats-banner .stat-block:nth-child(2n) { border-right: none; }
+      .stats-banner .stat-block:nth-last-child(-n+2) { border-bottom: none; }
+      .stats-banner .stat-counter { font-size: 2.75rem; }
+    }
+    @media (max-width: 480px) {
+      .stats-banner .stat-counter { font-size: 2.25rem; }
+      .stats-banner .stat-desc { font-size: 0.85rem; }
+      .stats-banner { padding: 3rem 0; }
+    }
+
+    /* ── Philosophy blockquote & signature ── */
+    .philosophy-quote { border-left: 4px solid var(--primary); margin: 2.5rem auto; padding: 1.5rem 2rem; background: var(--bg-tertiary); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; text-align: left; max-width: 700px; }
+    .philosophy-quote p { font-size: 1.35rem; font-style: italic; color: var(--text-primary); line-height: 1.7; margin: 0; }
+    .philosophy-signature { margin-top: 2rem; display: flex; align-items: center; justify-content: center; gap: 1rem; }
+    .sig-line { width: 40px; height: 2px; background: var(--primary); }
+    .sig-name { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); }
+
+    /* ── Discipline cards with icons ── */
+    .discipline-card { background: var(--bg-secondary); border-radius: var(--radius-lg); padding: 2.5rem 2rem; text-align: center; border: 1px solid var(--border); transition: var(--transition); position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; }
+    .discipline-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--primary) 0%, transparent 70%); opacity: 0; transition: opacity 0.4s ease; border-radius: var(--radius-lg); }
+    .discipline-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .discipline-card:hover::before { opacity: 0.06; }
+    .disc-icon { width: 60px; height: 60px; border-radius: 16px; background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; border: 1px solid var(--border); color: var(--primary); }
+    .disc-icon svg { width: 28px; height: 28px; }
+    .disc-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; margin-top: auto; padding-top: 1.25rem; }
+    .disc-tag { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 0.2rem 0.65rem; border-radius: 999px; background: var(--bg-tertiary); border: 1px solid var(--border); color: var(--text-muted); }
+
+    /* ── Awards ── */
+    .awards-section { background: var(--bg-secondary); }
+    .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .award-card { background: var(--bg-primary, var(--bg-tertiary)); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; display: flex; gap: 1.25rem; align-items: flex-start; transition: var(--transition); }
+    .award-card:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .award-icon-wrap { width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #f59e0b22, #f59e0b11); border: 1px solid #f59e0b44; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .award-icon-wrap svg { width: 26px; height: 26px; color: #f59e0b; }
+    .award-year { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--primary); display: block; margin-bottom: 0.3rem; }
+    .award-title { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); line-height: 1.3; margin-bottom: 0.4rem; }
+    .award-org { font-size: 0.82rem; color: var(--text-muted); }
+    .award-badge { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 0.2rem 0.6rem; border-radius: 999px; margin-top: 0.6rem; }
+    .award-badge.gold { background: #f59e0b22; color: #d97706; border: 1px solid #f59e0b44; }
+    .award-badge.silver { background: #94a3b822; color: #64748b; border: 1px solid #94a3b844; }
+    .award-badge.bronze { background: #cd7f3222; color: #a0522d; border: 1px solid #cd7f3244; }
+    .award-badge.staff-pick { background: #10b98122; color: #059669; border: 1px solid #10b98144; }
+    .award-badge.finalist { background: #8b5cf622; color: #7c3aed; border: 1px solid #8b5cf644; }
+
+    /* ── Testimonials ── */
+    .testimonials-section { background: var(--bg-tertiary); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+    .testimonial-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem; position: relative; transition: var(--transition); }
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
+    .testimonial-card::before { content: '\201C'; font-size: 5rem; line-height: 0.8; color: var(--primary); opacity: 0.15; position: absolute; top: 1.5rem; left: 1.5rem; font-family: Georgia, serif; }
+    .stars { display: flex; gap: 3px; margin-bottom: 1.25rem; }
+    .stars svg { width: 16px; height: 16px; fill: #f59e0b; color: #f59e0b; }
+    .testimonial-text { font-size: 1rem; line-height: 1.75; color: var(--text-secondary); margin-bottom: 2rem; font-style: italic; position: relative; z-index: 1; }
+    .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+    .author-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), #a855f7); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; color: #fff; flex-shrink: 0; }
+    .author-name { font-weight: 700; font-size: 0.95rem; color: var(--text-primary); }
+    .author-title { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.15rem; }
+
+    /* ── Client logos improved ── */
+    .logos-row { display: flex; justify-content: center; align-items: center; gap: 0; flex-wrap: wrap; margin-top: 2.5rem; }
+    .logo-item { flex: 1 1 160px; max-width: 200px; padding: 1.5rem 2rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; opacity: 0.55; transition: opacity 0.3s ease, transform 0.3s ease; }
+    .logo-item:hover { opacity: 1; transform: scale(1.06); }
+    .logo-item:last-child { border-right: none; }
+    @media (max-width: 768px) { .logo-item { flex: 1 1 120px; } .logo-item:nth-child(even) { border-right: none; } }
+
+    /* ── Utility ── */
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    @media (max-width: 900px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .grid-4 { grid-template-columns: 1fr; } }
+
+    /* ── Global mobile section padding ── */
+    @media (max-width: 768px) {
+      section { padding-block: 3.5rem; }
+      .section-header h2 { font-size: 1.75rem !important; }
+      .hero-title { font-size: 2.75rem !important; }
+      .awards-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .result-metrics { gap: 0.75rem; }
+      .metric-box { flex: 1 1 60px; padding: 0.65rem 0.85rem; }
+      .metric-box .metric-val { font-size: 1.25rem; }
+      .logos-row { gap: 0; }
+      .logo-item { flex: 1 1 100px; padding: 1rem; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2.2rem !important; }
+      .discipline-card { padding: 2rem 1.5rem; }
+      .award-card { flex-direction: column; gap: 1rem; }
+      .testimonial-card { padding: 1.75rem; }
+    }
+    .section-eyebrow { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--primary); margin-bottom: 0.75rem; display: block; }
   </style>
 </head>
 <body>
@@ -71,7 +195,9 @@
     </div>
   </header>
 
-  <!-- 1. HERO SECTION -->
+  <!-- ════════════════════════════════════════════════
+       1. HERO SECTION
+  ════════════════════════════════════════════════ -->
   <section class="hero" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('/assets/images/banner_home.png') center/cover no-repeat; padding-top: calc(var(--header-height) + 6rem); min-height: 85vh; display: flex; align-items: center; color: white;">
     <div class="container fade-up" style="text-align: center; max-width: 900px;">
       <div class="badge" style="margin: 0 auto 2rem;">
@@ -82,93 +208,427 @@
         <span style="color: rgba(255,255,255,0.6);">Technical Precision.</span>
       </h1>
       <p class="hero-description" style="font-size: 1.25rem; margin: 0 auto 3rem;">
-        I craft compelling demo reels, high-fidelity visual effects, and dynamic motion graphics that elevate brands and captivate audiences globally.
+        I craft compelling demo reels, high-fidelity visual effects, and dynamic motion graphics that elevate brands and captivate audiences globally. Every frame is a deliberate creative decision — built for impact, engineered for excellence.
       </p>
       <div class="btn-group center">
         <a href="reels.html" class="btn btn-primary" style="padding-inline: 3rem;">Watch Demo Reels</a>
         <a href="contact.html" class="btn btn-secondary" style="padding-inline: 3rem;">Project Inquiry</a>
       </div>
+
+      <!-- Animated counter strip -->
+      <div class="hero-stats">
+        <div class="hero-stat-item">
+          <span class="stat-counter" data-target="150" data-suffix="+">150+</span>
+          <span class="stat-label">Projects Delivered</span>
+        </div>
+        <div class="hero-stat-item">
+          <span class="stat-counter" data-target="8" data-suffix="+">8+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="hero-stat-item">
+          <span class="stat-counter" data-target="25" data-suffix="+">25+</span>
+          <span class="stat-label">Fortune 500 Clients</span>
+        </div>
+        <div class="hero-stat-item">
+          <span class="stat-counter" data-target="99" data-suffix="%">99%</span>
+          <span class="stat-label">Client Satisfaction</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- 2. FEATURED WORK HIGHLIGHT -->
+  <!-- ════════════════════════════════════════════════
+       2. FEATURED CAMPAIGN
+  ════════════════════════════════════════════════ -->
   <section>
     <div class="container">
       <div class="section-header center fade-up">
+        <span class="section-eyebrow">Case Study</span>
         <h2>Featured Campaign</h2>
-        <p>A deep dive into my most recent flagship project.</p>
+        <p>A deep dive into my most recent flagship project — from concept to final deliverable.</p>
       </div>
       <div class="case-study-card fade-up delay-100" style="flex-direction: row; flex-wrap: wrap;">
         <div class="case-img" style="flex: 1 1 500px; aspect-ratio: 16/9;">
           <img src="/assets/images/case1.png" alt="Tech Launch Campaign">
         </div>
-        <div class="case-content" style="flex: 1 1 300px; display: flex; flex-direction: column; justify-content: center;">
-          <span class="badge" style="margin-bottom: 1rem; background: var(--bg-tertiary); align-self: flex-start;">Motion Graphics</span>
-          <h3 style="font-size: 2.5rem; margin-bottom: 1rem;">Tech Product Launch</h3>
-          <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem;">Designed and animated a global product launch video for a Fortune 500 tech brand. Handled full 3D product rendering, kinetic typography, and final compositing.</p>
-          <a href="projects.html" class="btn btn-secondary" style="align-self: flex-start;">View Full Case Study</a>
+        <div class="case-content" style="flex: 1 1 300px; display: flex; flex-direction: column; justify-content: center; gap: 0;">
+          <span class="badge" style="margin-bottom: 1.25rem; background: var(--bg-tertiary); align-self: flex-start;">Motion Graphics · 3D · VFX</span>
+          <h3 style="font-size: 2.25rem; margin-bottom: 0.75rem; line-height: 1.15;">Tech Product Launch — Global Reveal Campaign</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 1.25rem; font-size: 1.05rem; line-height: 1.7;">
+            Designed and animated a full global product-launch video for a Fortune 500 tech brand. Handled full 3D product rendering and turntable animation, kinetic typography sequences, particle systems, and HDR compositing — delivering broadcast-ready masters in 4K for 12 regional markets simultaneously.
+          </p>
+
+          <!-- Tools used -->
+          <p style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 0.6rem;">Tools Used</p>
+          <div class="tool-pills">
+            <span class="tool-pill">Cinema 4D</span>
+            <span class="tool-pill">After Effects</span>
+            <span class="tool-pill">Nuke</span>
+            <span class="tool-pill">Redshift</span>
+            <span class="tool-pill">DaVinci Resolve</span>
+            <span class="tool-pill">Premiere Pro</span>
+          </div>
+
+          <!-- Results metrics -->
+          <p style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 0.6rem;">Campaign Results</p>
+          <div class="result-metrics">
+            <div class="metric-box">
+              <span class="metric-val">42M+</span>
+              <span class="metric-lbl">Views</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-val">12</span>
+              <span class="metric-lbl">Markets</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-val">4K</span>
+              <span class="metric-lbl">Delivery</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-val">3×</span>
+              <span class="metric-lbl">ROI</span>
+            </div>
+          </div>
+
+          <a href="projects.html" class="btn btn-secondary" style="align-self: flex-start;">View Full Case Study →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 3. CORE PHILOSOPHY -->
-  <section style="background-color: var(--bg-secondary);">
-    <div class="container center fade-up" style="max-width: 800px;">
-      <h2 style="font-size: 3rem; margin-bottom: 2rem;">The Philosophy</h2>
-      <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
-        Great editing isn't just about flashy transitions. It's about rhythm, pacing, and emotional resonance. I approach every project—whether it's a 15-second social ad or a feature film VFX shot—with absolute dedication to the story.
-      </p>
-      <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8;">
-        My pipeline relies on the most advanced, industry-standard tools available, ensuring that the final deliverable isn't just beautiful, but technically flawless and ready for broadcast.
-      </p>
+  <!-- ════════════════════════════════════════════════
+       3. STATS BANNER (NEW)
+  ════════════════════════════════════════════════ -->
+  <section class="stats-banner">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <span class="section-eyebrow" style="color: rgba(255,255,255,0.4);">By the Numbers</span>
+        <h2 style="font-size: 2.25rem; color: #fff; margin: 0.5rem 0 0;">A decade of measurable impact.</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-block">
+          <span class="stat-counter" data-target="500" data-suffix="K+">500K+</span>
+          <span class="stat-desc">Frames Rendered</span>
+          <span class="stat-sub">Lifetime Output</span>
+        </div>
+        <div class="stat-block">
+          <span class="stat-counter" data-target="48" data-suffix="hrs">48hrs</span>
+          <span class="stat-desc">Average Turnaround</span>
+          <span class="stat-sub">For Standard Projects</span>
+        </div>
+        <div class="stat-block">
+          <span class="stat-counter" data-target="12" data-suffix="">12</span>
+          <span class="stat-desc">Industry Awards</span>
+          <span class="stat-sub">Won or Nominated</span>
+        </div>
+        <div class="stat-block">
+          <span class="stat-counter" data-target="4" data-suffix="K">4K</span>
+          <span class="stat-desc">Max Delivery Res</span>
+          <span class="stat-sub">Broadcast Ready</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- 4. SERVICES SUMMARY -->
+  <!-- ════════════════════════════════════════════════
+       4. CORE PHILOSOPHY
+  ════════════════════════════════════════════════ -->
+  <section style="background-color: var(--bg-secondary);">
+    <div class="container center fade-up" style="max-width: 820px;">
+      <span class="section-eyebrow">Guiding Principles</span>
+      <h2 style="font-size: 3rem; margin-bottom: 1.5rem;">The Philosophy</h2>
+      <p style="font-size: 1.2rem; color: var(--text-secondary); line-height: 1.85; margin-bottom: 1.25rem;">
+        Great editing isn't just about flashy transitions. It's about rhythm, pacing, and emotional resonance. I approach every project — whether it's a 15-second social ad or a feature-film VFX shot — with absolute dedication to the story being told and the emotion it must carry.
+      </p>
+
+      <div class="philosophy-quote">
+        <p>"The best visual effects are the ones the audience never notices — because they are completely in service of the story. Every frame should earn its place on screen."</p>
+      </div>
+
+      <p style="font-size: 1.2rem; color: var(--text-secondary); line-height: 1.85; margin-bottom: 1.5rem;">
+        My pipeline relies on the most advanced, industry-standard tools available, ensuring that the final deliverable isn't just beautiful, but technically flawless and ready for broadcast on every platform — from IMAX to Instagram.
+      </p>
+
+      <div class="philosophy-signature">
+        <div class="sig-line"></div>
+        <span class="sig-name">Creative Director &amp; Lead VFX Artist — Studio</span>
+        <div class="sig-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════
+       5. CORE DISCIPLINES
+  ════════════════════════════════════════════════ -->
   <section>
     <div class="container">
       <div class="section-header center fade-up">
+        <span class="section-eyebrow">What I Do</span>
         <h2>Core Disciplines</h2>
-        <p>Expertise across the entire post-production pipeline.</p>
+        <p>End-to-end expertise spanning the entire post-production pipeline — from first cut to final delivery.</p>
       </div>
-      <div class="grid grid-3 fade-up delay-100">
-        <div class="card" style="text-align: center;">
-          <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Motion Graphics</h3>
-          <p style="color: var(--text-secondary);">Dynamic 2D and 3D kinetic typography, animated branding, and explainer animations using After Effects and Cinema 4D.</p>
+      <div class="grid-4">
+
+        <!-- Motion Graphics -->
+        <div class="discipline-card reveal-scale">
+          <div class="disc-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>
+          </div>
+          <h3 style="margin-bottom: 0.75rem; font-size: 1.2rem;">Motion Graphics</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7;">Dynamic 2D and 3D kinetic typography, animated branding systems, logo reveals, and explainer animations — from social micro-content to full broadcast packages.</p>
+          <div class="disc-tags">
+            <span class="disc-tag">After Effects</span>
+            <span class="disc-tag">Cinema 4D</span>
+            <span class="disc-tag">Lottie</span>
+          </div>
         </div>
-        <div class="card" style="text-align: center;">
-          <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">VFX Compositing</h3>
-          <p style="color: var(--text-secondary);">Rotoscoping, green screen keying, set extensions, and CGI integration using The Foundry Nuke and After Effects.</p>
+
+        <!-- VFX Compositing -->
+        <div class="discipline-card reveal-scale delay-100">
+          <div class="disc-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.069A1 1 0 0121 8.876V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h16a1 1 0 001-1v-1.876a1 1 0 00-.447-.893L15 14M3 8l9 6 9-6"/></svg>
+          </div>
+          <h3 style="margin-bottom: 0.75rem; font-size: 1.2rem;">VFX Compositing</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7;">Precision rotoscoping, green-screen keying, match-moving, set extensions, and seamless CGI integration. Photo-real results at broadcast quality, delivered frame-accurate every time.</p>
+          <div class="disc-tags">
+            <span class="disc-tag">Nuke</span>
+            <span class="disc-tag">After Effects</span>
+            <span class="disc-tag">Mocha Pro</span>
+          </div>
         </div>
-        <div class="card" style="text-align: center;">
-          <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Offline/Online Editing</h3>
-          <p style="color: var(--text-secondary);">Narrative editing, commercial pacing, multi-cam sync, and high-fidelity finishing in Premiere Pro and DaVinci Resolve.</p>
+
+        <!-- Offline / Online Editing -->
+        <div class="discipline-card reveal-scale delay-200">
+          <div class="disc-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h10M4 18h6"/></svg>
+          </div>
+          <h3 style="margin-bottom: 0.75rem; font-size: 1.2rem;">Offline / Online Editing</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7;">Narrative storytelling, commercial pacing, multi-cam sync, and high-fidelity online finishing. Whether a 30-second spot or a feature documentary — structure, rhythm, and emotion guide every cut.</p>
+          <div class="disc-tags">
+            <span class="disc-tag">Premiere Pro</span>
+            <span class="disc-tag">DaVinci Resolve</span>
+            <span class="disc-tag">Avid</span>
+          </div>
+        </div>
+
+        <!-- Color Grading (NEW) -->
+        <div class="discipline-card reveal-scale delay-300">
+          <div class="disc-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="3"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </div>
+          <h3 style="margin-bottom: 0.75rem; font-size: 1.2rem;">Color Grading</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7;">Cinematic look development for commercials, narratives, and branded content. Skilled in HDR (Dolby Vision, HDR10), LUT design, primary and secondary correction, and multi-platform delivery pipelines.</p>
+          <div class="disc-tags">
+            <span class="disc-tag">DaVinci Resolve</span>
+            <span class="disc-tag">Baselight</span>
+            <span class="disc-tag">HDR</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════
+       6. AWARDS & RECOGNITION (NEW)
+  ════════════════════════════════════════════════ -->
+  <section class="awards-section">
+    <div class="container">
+      <div class="section-header center fade-up">
+        <span class="section-eyebrow">Recognition</span>
+        <h2>Awards &amp; Nominations</h2>
+        <p>Work recognized by the world's leading creative institutions and industry bodies.</p>
+      </div>
+      <div class="awards-grid">
+
+        <!-- Award 1 -->
+        <div class="award-card reveal-left">
+          <div class="award-icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3h14l1 7H4L5 3zM4 10s0 4 8 4 8-4 8-4M9 21l3-7 3 7"/></svg>
+          </div>
+          <div>
+            <span class="award-year">2025</span>
+            <div class="award-title">Best Visual Effects</div>
+            <div class="award-org">IndieWebFest International — Short Film Category</div>
+            <span class="award-badge gold">🥇 Winner</span>
+          </div>
+        </div>
+
+        <!-- Award 2 -->
+        <div class="award-card reveal-scale">
+          <div class="award-icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div>
+            <span class="award-year">2025</span>
+            <div class="award-title">Bronze Lion — Branded Content</div>
+            <div class="award-org">Cannes Lions International Festival of Creativity</div>
+            <span class="award-badge bronze">🥉 Bronze</span>
+          </div>
+        </div>
+
+        <!-- Award 3 -->
+        <div class="award-card reveal-right">
+          <div class="award-icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.069A1 1 0 0121 8.876V7a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h16a1 1 0 001-1v-1.876a1 1 0 00-.447-.893L15 14"/></svg>
+          </div>
+          <div>
+            <span class="award-year">2024</span>
+            <div class="award-title">Staff Pick — Motion Reel 2024</div>
+            <div class="award-org">Vimeo Editorial Team</div>
+            <span class="award-badge staff-pick">✦ Staff Pick</span>
+          </div>
+        </div>
+
+        <!-- Award 4 -->
+        <div class="award-card reveal-left delay-100">
+          <div class="award-icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="6"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </div>
+          <div>
+            <span class="award-year">2024</span>
+            <div class="award-title">Finalist — Best Motion Design Campaign</div>
+            <div class="award-org">Motion Awards — Digital &amp; Social Category</div>
+            <span class="award-badge finalist">◆ Finalist</span>
+          </div>
+        </div>
+
+        <!-- Award 5 -->
+        <div class="award-card reveal-right delay-100">
+          <div class="award-icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+          </div>
+          <div>
+            <span class="award-year">2023</span>
+            <div class="award-title">Silver Award — Best VFX Integration</div>
+            <div class="award-org">The Clio Awards — Craft &amp; Production</div>
+            <span class="award-badge silver">🥈 Silver</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════
+       7. TESTIMONIALS (NEW)
+  ════════════════════════════════════════════════ -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-header center fade-up">
+        <span class="section-eyebrow">Client Voices</span>
+        <h2>What Clients Say</h2>
+        <p>Relationships built on trust, craft, and consistently exceptional results.</p>
+      </div>
+      <div class="testimonials-grid fade-up delay-100">
+
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card">
+          <div class="stars">
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="testimonial-text">"The quality of the motion work delivered for our global product launch was genuinely jaw-dropping. Deadlines were respected, revisions were lightning-fast, and the final output exceeded our internal team's benchmark. We've locked in this studio for our next three campaigns."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">MR</div>
+            <div>
+              <div class="author-name">Marcus Reed</div>
+              <div class="author-title">VP of Brand Marketing — NexaTech Global</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card">
+          <div class="stars">
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="testimonial-text">"We hired this studio for a documentary series requiring complex green-screen compositing across 200+ shots. Not one shot was rejected by the broadcaster. The Nuke work was pristine, the color pipeline was immaculate, and the communication throughout was professional and transparent."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">SL</div>
+            <div>
+              <div class="author-name">Sofia Laurent</div>
+              <div class="author-title">Executive Producer — Lumière Films</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card">
+          <div class="stars">
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="testimonial-text">"We needed a motion designer who could think strategically, not just technically. This studio delivered a visual identity in motion that actually elevated our brand positioning. The animated logo system and brand guidelines they created are now used across 6 countries. Exceptional, full stop."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #f59e0b, #d97706);">JK</div>
+            <div>
+              <div class="author-name">James Kim</div>
+              <div class="author-title">Chief Creative Officer — Apex Ventures</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════
+       8. CLIENT LOGOS
+  ════════════════════════════════════════════════ -->
+  <section style="background-color: var(--bg-secondary); padding: 5rem 0;">
+    <div class="container center fade-up">
+      <span class="section-eyebrow">Trusted Partners</span>
+      <p style="font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 0.5rem; font-size: 0.78rem;">Trusted by forward-thinking teams at</p>
+      <h3 style="font-size: 1.6rem; margin-bottom: 2.5rem; color: var(--text-primary);">25+ industry-leading brands &amp; studios</h3>
+      <div class="logos-row">
+        <div class="logo-item">
+          <svg height="28" viewBox="0 0 120 28" fill="currentColor"><text x="0" y="20" font-family="Poppins, sans-serif" font-size="18" font-weight="800">Acme Corp</text></svg>
+        </div>
+        <div class="logo-item">
+          <svg height="28" viewBox="0 0 120 28" fill="currentColor"><text x="0" y="20" font-family="Poppins, sans-serif" font-size="18" font-weight="800">GlobalNet</text></svg>
+        </div>
+        <div class="logo-item">
+          <svg height="28" viewBox="0 0 120 28" fill="currentColor"><text x="0" y="20" font-family="Poppins, sans-serif" font-size="18" font-weight="800">TechFlow</text></svg>
+        </div>
+        <div class="logo-item">
+          <svg height="28" viewBox="0 0 120 28" fill="currentColor"><text x="0" y="20" font-family="Poppins, sans-serif" font-size="18" font-weight="800">Innovate</text></svg>
+        </div>
+        <div class="logo-item">
+          <svg height="28" viewBox="0 0 120 28" fill="currentColor"><text x="0" y="20" font-family="Poppins, sans-serif" font-size="18" font-weight="800">NexaTech</text></svg>
+        </div>
+        <div class="logo-item">
+          <svg height="28" viewBox="0 0 130 28" fill="currentColor"><text x="0" y="20" font-family="Poppins, sans-serif" font-size="18" font-weight="800">Lumière</text></svg>
+        </div>
+        <div class="logo-item">
+          <svg height="28" viewBox="0 0 120 28" fill="currentColor"><text x="0" y="20" font-family="Poppins, sans-serif" font-size="18" font-weight="800">Apex</text></svg>
+        </div>
+        <div class="logo-item" style="border-right: none;">
+          <svg height="28" viewBox="0 0 120 28" fill="currentColor"><text x="0" y="20" font-family="Poppins, sans-serif" font-size="18" font-weight="800">Orion Media</text></svg>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 5. CLIENT LOGOS -->
-  <section style="background-color: var(--bg-tertiary);">
-    <div class="container center fade-up" style="text-align: center;">
-      <p style="font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 2.5rem;">Trusted by forward-thinking teams</p>
-      <div style="display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; opacity: 0.6;">
-        <svg height="30" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-family="Poppins" font-size="20" font-weight="bold">Acme Corp</text></svg>
-        <svg height="30" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-family="Poppins" font-size="20" font-weight="bold">GlobalNet</text></svg>
-        <svg height="30" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-family="Poppins" font-size="20" font-weight="bold">TechFlow</text></svg>
-        <svg height="30" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-family="Poppins" font-size="20" font-weight="bold">Innovate</text></svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. CTA BANNER -->
+  <!-- ════════════════════════════════════════════════
+       9. CTA BANNER
+  ════════════════════════════════════════════════ -->
   <section style="background-color: var(--primary); color: var(--secondary); text-align: center;">
     <div class="container fade-up" style="max-width: 700px;">
       <h2 style="font-size: 3rem; margin-bottom: 1.5rem; color: var(--secondary);">Have a project in mind?</h2>
       <p style="font-size: 1.25rem; margin-bottom: 2.5rem; color: var(--secondary);">Fill out the project inquiry form to receive a custom quote and timeline.</p>
       <div class="magnetic-wrap">
-        <a href="contact.html" class="btn btn-white" style="padding-inline: 3rem;">Submit Project Inquiry</a>
+        <a href="/pages/contact.html" class="btn btn-white" style="padding-inline: 3rem;">Submit Project Inquiry</a>
       </div>
     </div>
   </section>
@@ -191,7 +651,7 @@
             <a href="reels.html">Demo Reels</a>
             <a href="software.html">Software</a>
             <a href="projects.html">Case Studies</a>
-            <a href="process.html">Process & Times</a>
+            <a href="process.html">Process &amp; Times</a>
           </div>
         </div>
 
@@ -214,5 +674,27 @@
 
   <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
   <script src="/assets/js/script.js"></script>
+
+  <!-- Animated counters -->
+  <script>
+    const counters = document.querySelectorAll('.stat-counter');
+    const observerCB = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = +entry.target.dataset.target;
+          let current = 0;
+          const step = target / 60;
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) { current = target; clearInterval(timer); }
+            entry.target.textContent = Math.floor(current) + (entry.target.dataset.suffix || '');
+          }, 16);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    };
+    const counterObserver = new IntersectionObserver(observerCB, { threshold: 0.5 });
+    counters.forEach(c => counterObserver.observe(c));
+  </script>
 </body>
 </html>

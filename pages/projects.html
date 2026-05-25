@@ -5,13 +5,231 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Creative Portfolio | Projects</title>
   <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    /* ── Filter Bar ── */
+    .filter-btn { padding: 0.5rem 1.5rem; border: 1px solid var(--border); border-radius: 100px; background: transparent; cursor: pointer; transition: all 0.3s; font-family: inherit; font-size: 0.9rem; color: var(--text-secondary); }
+    .filter-btn.active, .filter-btn:hover { background: var(--primary); color: var(--secondary); border-color: var(--primary); }
+
+    /* ── Filter bar layout ── */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    /* ── Case Study sub-headings ── */
+    .cs-sub-heading {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-top: 1.25rem;
+      margin-bottom: 0.35rem;
+      opacity: 0.85;
+    }
+
+    /* ── Metrics Row ── */
+    .metrics-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .metric-pill {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.75rem 1.25rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      min-width: 90px;
+      flex: 1;
+    }
+    .metric-pill .metric-value {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .metric-pill .metric-label {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.3rem;
+      text-align: center;
+    }
+
+    /* ── Stats Row ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    @media (max-width: 768px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    .stat-cell {
+      padding: 3rem 2rem;
+      text-align: center;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-cell:nth-child(4n) { border-right: none; }
+    @media (max-width: 768px) {
+      .stat-cell:nth-child(2n) { border-right: none; }
+    }
+    .stat-cell .stat-number {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .stat-cell .stat-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.5rem;
+    }
+
+    /* ── Tools Pills ── */
+    .tools-section-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .tools-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2rem;
+      justify-content: center;
+    }
+    .tool-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      background: var(--bg-secondary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all 0.25s;
+    }
+    .tool-pill:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: transparent;
+    }
+    .tool-pill .tool-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary);
+      opacity: 0.7;
+      flex-shrink: 0;
+    }
+
+    /* ── BTS Gallery enhancements ── */
+    .bts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    @media (max-width: 900px) {
+      .bts-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .bts-grid { grid-template-columns: 1fr; }
+    }
+    .bts-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 1;
+      box-shadow: var(--shadow-md);
+    }
+    .bts-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(1.2);
+      transition: filter 0.4s ease, transform 0.4s ease;
+    }
+    .bts-card:hover img {
+      filter: grayscale(20%) contrast(1.1);
+      transform: scale(1.04);
+    }
+    .bts-card-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.75rem 1rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .bts-card-placeholder {
+      background: var(--bg-tertiary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .bts-card-placeholder svg {
+      opacity: 0.25;
+    }
+    .bts-card-placeholder span {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-secondary);
+      opacity: 0.6;
+    }
+
+    /* ── Case Study Sticky Layout ── */
+    .cs-grid {
+      position: relative;
+      align-items: start;
+    }
+    .cs-img-sticky {
+      height: fit-content;
+    }
+    .cs-content-sticky {
+      position: sticky;
+      top: calc(var(--header-height) + 2rem);
+      height: fit-content;
+    }
+    @media (max-width: 768px) {
+      .cs-grid {
+        align-items: stretch;
+      }
+      .cs-content-sticky {
+        position: static;
+        height: auto;
+      }
+    }
+  </style>
 </head>
 <body>
 
   <!-- HEADER -->
   <header class="header" id="header">
     <div class="container header-container">
-      <a href="/assets/" class="logo">
+      <a href="/index.html" class="logo">
         <div class="logo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div>
         <span>STUDIO</span>
       </a>
@@ -60,106 +278,340 @@
   </header>
 
   <!-- 1. HERO SECTION -->
-  <section class="hero" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('/assets/images/banner_projects.png') center/cover no-repeat; padding-top: calc(var(--header-height) + 6rem); padding-bottom: 4rem; text-align: center; color: white;">
+  <section class="hero" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('/assets/images/banner_projects.png') center/cover no-repeat; padding-top: calc(var(--header-height) + 6rem); padding-bottom: 5rem; text-align: center; color: white;">
     <div class="container fade-up">
       <h1 class="hero-title" style="font-size: 4rem; margin-bottom: 1rem;">Selected Projects</h1>
       <p class="hero-description" style="font-size: 1.25rem; margin: 0 auto; max-width: 700px;">
-        A deep dive into three of my most successful recent campaigns, breaking down the specific roles and challenges overcome.
+        A deep dive into four of my most successful recent campaigns, breaking down the specific roles and challenges overcome.
       </p>
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <button class="filter-btn active">All Projects</button>
+        <button class="filter-btn">Motion Graphics</button>
+        <button class="filter-btn">VFX</button>
+        <button class="filter-btn">3D &amp; CGI</button>
+      </div>
     </div>
   </section>
 
-  <!-- 2. CASE STUDY 1 -->
+  <!-- 2. CASE STUDY 1 — VR Headset Launch -->
   <section>
     <div class="container fade-up delay-100">
-      <div class="grid grid-2" style="align-items: center;">
-        <div class="img-wrapper" style="box-shadow: var(--shadow-lg);">
+      <div class="grid grid-2 cs-grid">
+        <div class="img-wrapper cs-img-sticky" style="box-shadow: var(--shadow-lg);">
           <img src="/assets/images/case1.png" alt="Tech Product Launch" style="width: 100%; border-radius: var(--radius-lg);">
         </div>
-        <div style="padding: 2rem;">
+        <div class="cs-content-sticky" style="padding: 2rem;">
           <span class="badge" style="margin-bottom: 1rem; background: var(--bg-secondary);">Full 3D Pipeline</span>
           <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">VR Headset Launch</h2>
-          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
-            Tasked with generating a massive 60-second CGI teaser for a next-generation VR headset. Modeled the entire headset in Cinema 4D based on CAD files, built a complex lighting rig to highlight the glass and matte plastics, and animated dynamic camera sweeps.
+
+          <p class="cs-sub-heading">Challenge</p>
+          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 0.75rem;">
+            The client needed a photoreal 60-second CGI teaser that could go viral across social platforms within a tight 4-week window. With no physical product prototype available for scanning, the entire headset had to be reconstructed from engineering CAD files — a process that demanded meticulous polygon cleanup, UV unwrapping, and PBR material authoring from scratch.
           </p>
-          <ul style="color: var(--text-secondary); line-height: 2;">
-            <li><strong>Role:</strong> Lead 3D Artist & Motion Designer</li>
+
+          <p class="cs-sub-heading">Solution</p>
+          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 0.75rem;">
+            The headset was modelled in Cinema 4D using imported CAD geometry, then handed off to Redshift for GPU-accelerated rendering. A 12-light HDR rig was built to emphasise the interplay between the glossy visor and matte-textured housing. Dynamic camera sweeps were choreographed using C4D's Camera Morph tag, with depth-of-field pushed to cinematic extremes to create a sense of scale and premium quality.
+          </p>
+
+          <p class="cs-sub-heading">Impact</p>
+          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+            The teaser exceeded every KPI the client had projected. Within the first 24 hours of going live, it accumulated 2.5 million views across Instagram Reels, TikTok, and YouTube Shorts, generating a groundswell of pre-launch hype that contributed directly to a sold-out first production run. The campaign was subsequently shortlisted for a Promax Digital award.
+          </p>
+
+          <ul style="color: var(--text-secondary); line-height: 2; margin-bottom: 1.5rem;">
+            <li><strong>Role:</strong> Lead 3D Artist &amp; Motion Designer</li>
             <li><strong>Timeline:</strong> 4 Weeks</li>
             <li><strong>Outcome:</strong> 2.5M Views across social within 24 hours.</li>
           </ul>
+
+          <!-- Metrics -->
+          <div class="metrics-row">
+            <div class="metric-pill">
+              <span class="metric-value">2.5M</span>
+              <span class="metric-label">Total Views</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-value">8.4%</span>
+              <span class="metric-label">Engagement Rate</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-value">2×</span>
+              <span class="metric-label">Award Mentions</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-value">#1</span>
+              <span class="metric-label">Trending — TikTok</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 3. CASE STUDY 2 -->
+  <!-- 3. CASE STUDY 2 — Neon Genesis Web Series -->
   <section style="background-color: var(--bg-secondary);">
     <div class="container fade-up">
-      <div class="grid grid-2" style="align-items: center;">
-        <div style="padding: 2rem; order: 2;">
+      <div class="grid grid-2 cs-grid">
+        <div class="cs-content-sticky" style="padding: 2rem; order: 2;">
           <span class="badge" style="margin-bottom: 1rem; background: var(--bg-tertiary);">VFX Compositing</span>
           <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Neon Genesis Web Series</h2>
-          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
-            Lead compositing artist on a 6-part indie sci-fi web series. Handled over 150 complex VFX shots including wire-removals, extensive rotoscoping, holographic screen replacements, and fully CGI set extensions of a dystopian city skyline.
+
+          <p class="cs-sub-heading">Challenge</p>
+          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 0.75rem;">
+            Working on an indie production means zero budget buffer and no second chances. The six-episode sci-fi series required over 150 VFX shots delivered at broadcast quality — yet the production had been shot on a consumer-grade mirrorless camera under variable lighting conditions on locations that had none of the greenscreen infrastructure a traditional shoot would use.
           </p>
-          <ul style="color: var(--text-secondary); line-height: 2;">
+
+          <p class="cs-sub-heading">Solution</p>
+          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 0.75rem;">
+            Every shot was triaged in Nuke by complexity: wire and rig removals were batched using automatic inpainting scripts; rotoscoping was handled with a combination of Silhouette and Nuke's built-in roto tools; and the dystopian city extensions were built in Houdini as fully procedural environments before being composited through multi-layer EXR renders. Holographic screen replacements used custom GLSL shaders to simulate scanlines and chromatic aberration realistically.
+          </p>
+
+          <p class="cs-sub-heading">Impact</p>
+          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+            The series launched on YouTube and Vimeo to immediate critical attention, accumulating 800K views across the six episodes within the first month. It earned a nomination for Best VFX at IndieWebFest and was cited by Screen Daily as "a benchmark for what independent productions can achieve with creative pipeline engineering."
+          </p>
+
+          <ul style="color: var(--text-secondary); line-height: 2; margin-bottom: 1.5rem;">
             <li><strong>Role:</strong> Compositing Supervisor</li>
             <li><strong>Timeline:</strong> 8 Weeks</li>
             <li><strong>Outcome:</strong> Nominated for Best VFX at IndieWebFest.</li>
           </ul>
+
+          <!-- VFX Shot Breakdown -->
+          <div class="metrics-row">
+            <div class="metric-pill">
+              <span class="metric-value">152</span>
+              <span class="metric-label">Total VFX Shots</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-value">48</span>
+              <span class="metric-label">CGI Extensions</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-value">34</span>
+              <span class="metric-label">Screen Replacements</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-value">70</span>
+              <span class="metric-label">Roto / Clean-up</span>
+            </div>
+          </div>
         </div>
-        <div class="img-wrapper" style="box-shadow: var(--shadow-lg); order: 1;">
+        <div class="img-wrapper cs-img-sticky" style="box-shadow: var(--shadow-lg); order: 1;">
           <img src="/assets/images/case2.png" alt="Sci-Fi City VFX" style="width: 100%; border-radius: var(--radius-lg);">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 4. CASE STUDY 3 -->
+  <!-- 4. CASE STUDY 3 — Spotify Wrapped Campaign -->
   <section>
     <div class="container fade-up">
-      <div class="grid grid-2" style="align-items: center;">
-        <div class="img-wrapper" style="box-shadow: var(--shadow-lg);">
+      <div class="grid grid-2 cs-grid">
+        <div class="img-wrapper cs-img-sticky" style="box-shadow: var(--shadow-lg);">
           <img src="/assets/images/case3.png" alt="Kinetic Typography" style="width: 100%; border-radius: var(--radius-lg);">
         </div>
-        <div style="padding: 2rem;">
+        <div class="cs-content-sticky" style="padding: 2rem;">
           <span class="badge" style="margin-bottom: 1rem; background: var(--bg-secondary);">Motion Graphics</span>
           <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Spotify Wrapped Campaign</h2>
-          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
-            Designed a hyper-energetic, rhythm-driven motion graphics piece for a digital marketing push. Relied heavily on kinetic typography, rapid camera transitions, and explosive color palettes synchronized perfectly to a custom music track.
+
+          <p class="cs-sub-heading">Challenge</p>
+          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 0.75rem;">
+            The Spotify Wrapped moment is one of the most anticipated social media events of the year, and the brief demanded a visual identity that felt fresh, shareable, and unmistakably Spotify — all within a brutal 2-week turnaround. The animation needed to work equally well as a 15-second Instagram Story, a 30-second Reel, and a full 60-second YouTube pre-roll with no layout re-work.
           </p>
-          <ul style="color: var(--text-secondary); line-height: 2;">
+
+          <p class="cs-sub-heading">Solution</p>
+          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 0.75rem;">
+            A modular motion system was designed in After Effects, with each text block and colour field treated as an independently animatable component driven by audio-reactive expressions. The kinetic typography was rigged using Motion Bro expressions so that any editorial change to the script would auto-reflow the animation. Camera transitions were timed to the downbeats of the custom track using Marker-to-Keyframe scripts, ensuring perfect audio-visual synchrony across all three format variants.
+          </p>
+
+          <p class="cs-sub-heading">Impact</p>
+          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+            The campaign drove a 15% higher click-through rate compared to the previous year's Wrapped creative, with a 22% uplift in Story completion rate. The modular system was so well-received internally that Spotify's in-house team requested a handover of the After Effects template for ongoing use in regional market adaptations across 12 countries.
+          </p>
+
+          <ul style="color: var(--text-secondary); line-height: 2; margin-bottom: 1.5rem;">
             <li><strong>Role:</strong> Motion Graphics Animator</li>
             <li><strong>Timeline:</strong> 2 Weeks</li>
             <li><strong>Outcome:</strong> 15% higher click-through-rate than previous campaigns.</li>
           </ul>
+
+          <!-- Metrics -->
+          <div class="metrics-row">
+            <div class="metric-pill">
+              <span class="metric-value">+15%</span>
+              <span class="metric-label">Click-Through Rate</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-value">+22%</span>
+              <span class="metric-label">Story Completion</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-value">12</span>
+              <span class="metric-label">Regional Markets</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-value">3</span>
+              <span class="metric-label">Format Variants</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 5. BEHIND THE SCENES GALLERY -->
+  <!-- 5. CASE STUDY 4 — Nike Air Max Global Campaign (NEW) -->
   <section style="background-color: var(--bg-secondary);">
+    <div class="container fade-up">
+      <div class="grid grid-2 cs-grid">
+        <div class="cs-content-sticky" style="padding: 2rem; order: 2;">
+          <span class="badge" style="margin-bottom: 1rem; background: var(--bg-tertiary);">Motion Graphics / Commercial</span>
+          <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Nike Air Max Global Campaign</h2>
+
+          <p class="cs-sub-heading">Challenge</p>
+          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 0.75rem;">
+            Nike required a 30-second global commercial for the Air Max 360 launch that could communicate the shoe's signature Air cushioning technology in a way that felt visceral and cinematic — not clinical. The brief explicitly ruled out product-on-white footage and pushed instead for a fully animated world where physics became the hero, all under a punishing 3-week delivery schedule.
+          </p>
+
+          <p class="cs-sub-heading">Solution</p>
+          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 0.75rem;">
+            A proprietary physics-based animation system was developed in Cinema 4D using Houdini for fluid and soft-body simulations to visualise the air compression beneath each footfall in real time. The shoe itself was rendered in Redshift with sub-surface scattering applied to the translucent Air unit. Every animation beat was locked to a custom trap music track composed specifically for the campaign, with keyframes driven by audio amplitude data extracted via AEJuice's Audio2Keyframes tool.
+          </p>
+
+          <p class="cs-sub-heading">Impact</p>
+          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+            The commercial amassed 50M+ cross-platform impressions in the first week of release across YouTube, Instagram, and Nike's owned digital channels. It was featured in Adweek's "Best Commercials of the Quarter" roundup and credited by Nike's marketing team as a significant driver of the Air Max 360's sell-through exceeding projections by 30% in the launch quarter.
+          </p>
+
+          <ul style="color: var(--text-secondary); line-height: 2; margin-bottom: 1.5rem;">
+            <li><strong>Role:</strong> Lead Motion Designer</li>
+            <li><strong>Timeline:</strong> 3 Weeks</li>
+            <li><strong>Outcome:</strong> 50M+ cross-platform impressions, featured in Adweek.</li>
+          </ul>
+
+          <!-- Metrics -->
+          <div class="metrics-row">
+            <div class="metric-pill">
+              <span class="metric-value">50M+</span>
+              <span class="metric-label">Impressions</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-value">+30%</span>
+              <span class="metric-label">Sales Vs. Forecast</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-value">Adweek</span>
+              <span class="metric-label">Featured In</span>
+            </div>
+            <div class="metric-pill">
+              <span class="metric-value">3</span>
+              <span class="metric-label">Platforms</span>
+            </div>
+          </div>
+        </div>
+        <!-- Placeholder image — using case3 as stand-in -->
+        <div class="img-wrapper cs-img-sticky" style="box-shadow: var(--shadow-lg); order: 1; position: relative; border-radius: var(--radius-lg); overflow: hidden;">
+          <img src="/assets/images/case3.png" alt="Nike Air Max Global Campaign" style="width: 100%; border-radius: var(--radius-lg); filter: hue-rotate(200deg) saturate(1.4);">
+          <div style="position: absolute; top: 1rem; right: 1rem; background: #000; color: #fff; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; padding: 0.35rem 0.75rem; border-radius: 100px; text-transform: uppercase;">New</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. TOOLS USED (NEW) -->
+  <section>
+    <div class="container fade-up">
+      <div class="tools-section-inner">
+        <div class="section-header center">
+          <h2>Tools of the Trade</h2>
+          <p>The complete software stack powering every project in this portfolio — from concept to final render.</p>
+        </div>
+        <div class="tools-list">
+          <span class="tool-pill"><span class="tool-dot"></span>Cinema 4D</span>
+          <span class="tool-pill"><span class="tool-dot"></span>After Effects</span>
+          <span class="tool-pill"><span class="tool-dot"></span>Houdini</span>
+          <span class="tool-pill"><span class="tool-dot"></span>Nuke</span>
+          <span class="tool-pill"><span class="tool-dot"></span>Redshift</span>
+          <span class="tool-pill"><span class="tool-dot"></span>Silhouette FX</span>
+          <span class="tool-pill"><span class="tool-dot"></span>DaVinci Resolve</span>
+          <span class="tool-pill"><span class="tool-dot"></span>ZBrush</span>
+          <span class="tool-pill"><span class="tool-dot"></span>Substance Painter</span>
+          <span class="tool-pill"><span class="tool-dot"></span>Octane Render</span>
+          <span class="tool-pill"><span class="tool-dot"></span>Adobe Premiere Pro</span>
+          <span class="tool-pill"><span class="tool-dot"></span>Photoshop</span>
+          <span class="tool-pill"><span class="tool-dot"></span>Illustrator</span>
+          <span class="tool-pill"><span class="tool-dot"></span>Unreal Engine 5</span>
+          <span class="tool-pill"><span class="tool-dot"></span>Mocha Pro</span>
+          <span class="tool-pill"><span class="tool-dot"></span>Trapcode Suite</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. STATS ROW (NEW) -->
+  <section style="background-color: var(--bg-secondary);">
+    <div class="container fade-up" style="padding-left: 0; padding-right: 0; max-width: 100%;">
+      <div class="stats-row">
+        <div class="stat-cell">
+          <div class="stat-number">4+</div>
+          <div class="stat-desc">Featured Projects</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number">150+</div>
+          <div class="stat-desc">VFX Shots</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number">50M+</div>
+          <div class="stat-desc">Content Views</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number">12</div>
+          <div class="stat-desc">Industry Awards</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. BEHIND THE SCENES GALLERY -->
+  <section>
     <div class="container fade-up">
       <div class="section-header center">
         <h2>Behind The Scenes</h2>
-        <p>A look at the wireframes, raw plates, and node graphs before final render.</p>
+        <p>
+          A look at the wireframes, raw plates, and node graphs before final render — the messy, iterative reality of
+          production-grade motion design. Every masterpiece starts as a grey-shaded polygon and a noodle-tangled node tree.
+        </p>
       </div>
-      <div class="grid grid-3 delay-100">
-        <div class="img-wrapper" style="border-radius: var(--radius-md);">
-          <img src="/assets/images/case1.png" style="width: 100%; aspect-ratio: 1; object-fit: cover; filter: grayscale(100%) contrast(1.2);">
+      <div class="bts-grid">
+        <div class="bts-card">
+          <img src="/assets/images/case1.png" alt="VR Headset — Wireframe Stage">
+          <div class="bts-card-label">VR Headset — Wireframe</div>
         </div>
-        <div class="img-wrapper" style="border-radius: var(--radius-md);">
-          <img src="/assets/images/case2.png" style="width: 100%; aspect-ratio: 1; object-fit: cover; filter: grayscale(100%) contrast(1.2);">
+        <div class="bts-card">
+          <img src="/assets/images/case2.png" alt="Neon Genesis — Raw Plate">
+          <div class="bts-card-label">Neon Genesis — Raw Plate</div>
         </div>
-        <div class="img-wrapper" style="border-radius: var(--radius-md);">
-          <img src="/assets/images/case3.png" style="width: 100%; aspect-ratio: 1; object-fit: cover; filter: grayscale(100%) contrast(1.2);">
+        <div class="bts-card">
+          <img src="/assets/images/case3.png" alt="Spotify Wrapped — Motion Test">
+          <div class="bts-card-label">Spotify Wrapped — Motion Test</div>
+        </div>
+        <!-- 4th placeholder BTS card -->
+        <div class="bts-card bts-card-placeholder">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+          </svg>
+          <span>Nike — Node Graph</span>
+          <span style="font-size: 0.6rem; opacity: 0.5;">Coming Soon</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 6. CTA BANNER -->
+  <!-- 9. CTA BANNER -->
   <section style="background-color: var(--primary); color: var(--secondary); text-align: center;">
     <div class="container fade-up" style="max-width: 700px;">
       <h2 style="font-size: 3rem; margin-bottom: 1.5rem; color: var(--secondary);">Want to be the next case study?</h2>
@@ -180,7 +632,7 @@
         </div>
         <div class="footer-col">
           <h4>Navigation</h4>
-          <div class="footer-links"><a href="reels.html">Demo Reels</a><a href="software.html">Software</a><a href="projects.html">Case Studies</a><a href="process.html">Process & Times</a></div>
+          <div class="footer-links"><a href="reels.html">Demo Reels</a><a href="software.html">Software</a><a href="projects.html">Case Studies</a><a href="process.html">Process &amp; Times</a></div>
         </div>
         <div class="footer-col">
           <h4>Social</h4>

@@ -6,8 +6,174 @@
   <title>Creative Portfolio | Software</title>
   <link rel="stylesheet" href="/assets/css/style.css">
   <style>
-    .skill-card { background-color: var(--bg-primary); border: 1px solid var(--border); padding: 2rem; border-radius: var(--radius-md); text-align: center; transition: var(--transition); }
+    /* ── Skill Cards ── */
+    .skill-card {
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: var(--radius-md);
+      text-align: center;
+      transition: var(--transition);
+    }
     .skill-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+
+    .skill-card .tool-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-sm);
+      margin: 0 auto 1.25rem;
+      background: color-mix(in srgb, var(--primary) 12%, transparent);
+      color: var(--primary);
+    }
+    .skill-card .tool-icon svg { width: 36px; height: 36px; }
+
+    .skill-card .skill-use {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-top: 0.4rem;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    /* ── Progress Bars ── */
+    .progress-bar-bg {
+      background: var(--border);
+      border-radius: 100px;
+      height: 6px;
+      margin-top: 0.75rem;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 100px;
+      width: 0;
+      transition: width 1.5s ease;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.6rem;
+    }
+    .progress-label span { font-size: 0.78rem; color: var(--text-secondary); }
+    .progress-label strong { font-size: 0.85rem; color: var(--primary); font-weight: 700; }
+
+    /* ── 3D Section ── */
+    .cgi-list { margin-top: 1.5rem; padding-left: 0; list-style: none; }
+    .cgi-list li {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.6;
+    }
+    .cgi-list li:last-child { border-bottom: none; }
+    .cgi-list li::before {
+      content: "▸";
+      color: var(--primary);
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+
+    /* ── Compositing Cards ── */
+    .comp-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 2.25rem 2rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .comp-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+    .comp-card .comp-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      margin: 0 auto 1.25rem;
+      background: color-mix(in srgb, var(--primary) 12%, transparent);
+      color: var(--primary);
+    }
+    .comp-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+    .comp-card p { color: var(--text-secondary); line-height: 1.8; font-size: 0.95rem; }
+
+    /* ── Plugin Cards ── */
+    .plugin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+    .plugin-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: var(--transition);
+    }
+    .plugin-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .plugin-dot {
+      flex-shrink: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+      margin-top: 0.35rem;
+    }
+    .plugin-card h4 { font-size: 1rem; margin-bottom: 0.35rem; }
+    .plugin-card p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.55; }
+
+    /* ── Hardware Specs ── */
+    .hw-spec-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem 1.25rem;
+      text-align: left;
+      transition: var(--transition);
+    }
+    .hw-spec-card:hover { border-color: var(--primary); }
+    .hw-spec-card h4 { font-size: 1.1rem; color: var(--primary); margin-bottom: 0.5rem; }
+    .hw-spec-card .hw-value { font-weight: 700; font-size: 0.97rem; margin-bottom: 0.4rem; }
+    .hw-spec-card .hw-note { color: var(--text-secondary); font-size: 0.83rem; line-height: 1.55; }
+
+    /* ── Workflow Philosophy ── */
+    .philosophy-section {
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .philosophy-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .philosophy-inner .eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    .philosophy-inner h2 { margin-bottom: 1.75rem; }
+    .philosophy-inner p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.9;
+      margin-bottom: 1.25rem;
+    }
+    .philosophy-inner p:last-of-type { margin-bottom: 0; }
   </style>
 </head>
 <body>
@@ -83,38 +249,124 @@
         <p>The foundation of my motion graphics and offline editing pipeline.</p>
       </div>
       <div class="grid grid-4 fade-up delay-100">
+
+        <!-- After Effects -->
         <div class="skill-card">
-          <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">After Effects</h3>
+          <div class="tool-icon">
+            <!-- After Effects icon -->
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="36" height="36" rx="6" fill="currentColor" fill-opacity="0.12"/>
+              <path d="M10 26l5.5-16h2.5l5.5 16h-2.8l-1.2-3.8h-5.5L12.8 26H10zm4.4-6h4.2l-2.1-6.5L14.4 20z" fill="currentColor"/>
+              <path d="M24 18.5c0-1.1.4-2.1 1-2.8.7-.8 1.6-1.2 2.7-1.2V17c-.7 0-1.2.3-1.6.8-.4.5-.6 1.1-.6 1.8V26H24v-7.5z" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.35rem;">After Effects</h3>
           <p style="color: var(--text-secondary);">Expert (10+ Yrs)</p>
+          <p class="skill-use">Kinetic typography, motion graphics, complex expression rigs &amp; VFX compositing.</p>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" data-width="99"></div>
+          </div>
+          <div class="progress-label">
+            <span>Proficiency</span>
+            <strong>99%</strong>
+          </div>
         </div>
+
+        <!-- Premiere Pro -->
         <div class="skill-card">
-          <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Premiere Pro</h3>
+          <div class="tool-icon">
+            <!-- Premiere Pro icon -->
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="36" height="36" rx="6" fill="currentColor" fill-opacity="0.12"/>
+              <path d="M10 26V10h6c1.5 0 2.7.5 3.6 1.4.9.9 1.4 2.1 1.4 3.6s-.5 2.7-1.4 3.6c-.9.9-2.1 1.4-3.6 1.4h-3.2V26H10zm2.8-8.4h3.2c.8 0 1.4-.2 1.8-.7.5-.5.7-1.1.7-1.9s-.2-1.4-.7-1.9c-.4-.5-1-.7-1.8-.7h-3.2v5.2z" fill="currentColor"/>
+              <rect x="22" y="10" width="2.8" height="16" rx="1" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.35rem;">Premiere Pro</h3>
           <p style="color: var(--text-secondary);">Expert (10+ Yrs)</p>
+          <p class="skill-use">Offline editing, multi-cam sequences, 8K RAW timelines &amp; broadcast delivery.</p>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" data-width="97"></div>
+          </div>
+          <div class="progress-label">
+            <span>Proficiency</span>
+            <strong>97%</strong>
+          </div>
         </div>
+
+        <!-- Figma -->
         <div class="skill-card">
-          <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Figma</h3>
+          <div class="tool-icon">
+            <!-- Figma icon -->
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="36" height="36" rx="6" fill="currentColor" fill-opacity="0.12"/>
+              <circle cx="22" cy="18" r="4" stroke="currentColor" stroke-width="2"/>
+              <path d="M14 10h4a4 4 0 0 1 0 8h-4V10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M14 18h4a4 4 0 0 1 0 8h-4V18z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M14 10a4 4 0 0 0 0 8" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.35rem;">Figma</h3>
           <p style="color: var(--text-secondary);">Advanced (5 Yrs)</p>
+          <p class="skill-use">UI/UX design, component systems, prototyping &amp; motion design handoffs.</p>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" data-width="85"></div>
+          </div>
+          <div class="progress-label">
+            <span>Proficiency</span>
+            <strong>85%</strong>
+          </div>
         </div>
+
+        <!-- Illustrator -->
         <div class="skill-card">
-          <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Illustrator</h3>
+          <div class="tool-icon">
+            <!-- Illustrator icon -->
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="36" height="36" rx="6" fill="currentColor" fill-opacity="0.12"/>
+              <path d="M10.5 26L16 10h3.5l5.5 16h-3l-1.3-4h-5.9l-1.3 4h-3zm4.2-6.8h4.1l-2-6.2-2.1 6.2z" fill="currentColor"/>
+              <circle cx="25.5" cy="11.5" r="1.5" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.35rem;">Illustrator</h3>
           <p style="color: var(--text-secondary);">Advanced (8 Yrs)</p>
+          <p class="skill-use">Vector asset creation, logo animation prep &amp; scalable graphic system design.</p>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" data-width="90"></div>
+          </div>
+          <div class="progress-label">
+            <span>Proficiency</span>
+            <strong>90%</strong>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- 3. 3D & CGI SOFTWARE -->
+  <!-- 3. 3D & CGI WORKFLOWS -->
   <section style="background-color: var(--bg-secondary);">
     <div class="container fade-up">
       <div class="grid grid-2" style="align-items: center;">
         <div>
-          <h2>3D & CGI Workflows</h2>
-          <p style="color: var(--text-secondary); line-height: 1.8; margin-top: 1.5rem;">Whether building entire virtual sets from scratch or generating hyper-realistic product renders, my 3D pipeline is fully optimized for speed and fidelity.</p>
-          <ul style="margin-top: 1.5rem; padding-left: 1.5rem; line-height: 2;">
-            <li><strong>Cinema 4D:</strong> Primary modeling, mograph, and animation tool.</li>
-            <li><strong>Blender:</strong> Hard-surface modeling and fluid simulations.</li>
-            <li><strong>Unreal Engine:</strong> Real-time rendering and virtual production.</li>
-            <li><strong>Redshift:</strong> Biased GPU rendering for lightning-fast output.</li>
+          <h2>3D &amp; CGI Workflows</h2>
+          <p style="color: var(--text-secondary); line-height: 1.8; margin-top: 1.5rem;">Whether building entire virtual sets from scratch or generating hyper-realistic product renders, my 3D pipeline is fully optimized for speed and fidelity. Every tool in this stack has been chosen for its specific role — together they cover concept through delivery without compromise.</p>
+          <ul class="cgi-list">
+            <li>
+              <span><strong>Cinema 4D:</strong> Primary modeling, MoGraph effector-based animation, and procedural rigging. Used daily for broadcast-ready title sequences and abstract 3D motion.</span>
+            </li>
+            <li>
+              <span><strong>Blender:</strong> Hard-surface and organic modeling, fluid &amp; smoke simulations, geometry node-driven procedural environments, and dynamic particle systems.</span>
+            </li>
+            <li>
+              <span><strong>Unreal Engine:</strong> Real-time rendering via Lumen and Nanite, virtual production LED wall workflows, and interactive archviz with cinematic-quality lighting.</span>
+            </li>
+            <li>
+              <span><strong>Redshift:</strong> Biased GPU rendering for lightning-fast turnaround on complex scenes. Handles multi-layer EXR passes, volumetric fog, caustics, and subsurface scattering.</span>
+            </li>
+            <li>
+              <span><strong>OctaneRender:</strong> Spectral lighting and atmospheric effects — physically accurate sky models, deep volumetric clouds, and HDRI-matched environment lighting for product photography-grade realism.</span>
+            </li>
           </ul>
         </div>
         <div class="img-wrapper" style="box-shadow: var(--shadow-lg);">
@@ -124,51 +376,173 @@
     </div>
   </section>
 
-  <!-- 4. COMPOSITING PIPELINE -->
+  <!-- 4. COMPOSITING & FINISHING -->
   <section>
     <div class="container fade-up">
       <div class="section-header center">
-        <h2>Compositing & Finishing</h2>
-        <p>The final 10% that makes a shot look cinematic.</p>
+        <h2>Compositing &amp; Finishing</h2>
+        <p>The final 10% that separates a good shot from a cinematic masterpiece.</p>
       </div>
-      <div class="grid grid-2 delay-100">
-        <div class="card" style="text-align: center;">
-          <h3 style="font-size: 2rem; margin-bottom: 1rem;">The Foundry Nuke</h3>
-          <p style="color: var(--text-secondary);">Used for node-based compositing, complex green screen keying, multi-pass EXR manipulation, and planar tracking.</p>
+      <div class="grid grid-3 delay-100" style="margin-top: 2.5rem;">
+
+        <div class="comp-card">
+          <div class="comp-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3>The Foundry Nuke</h3>
+          <p>Industry-standard node-based compositor for feature film and broadcast VFX. Handles complex green screen extraction using the Primatte and IBK keyers, multi-pass EXR recombination from 3D renders, and advanced camera tracking integration with SynthEyes data. The node graph allows unlimited non-destructive layering — essential when a single composite has dozens of 3D passes, generated elements, and live-action plates all working together simultaneously.</p>
         </div>
-        <div class="card" style="text-align: center;">
-          <h3 style="font-size: 2rem; margin-bottom: 1rem;">DaVinci Resolve</h3>
-          <p style="color: var(--text-secondary);">Used for primary and secondary color grading, conforming timelines, and final master delivery in Rec.709 and HDR.</p>
+
+        <div class="comp-card">
+          <div class="comp-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/><path d="M8 12l2.5 2.5L16 9"/></svg>
+          </div>
+          <h3>DaVinci Resolve</h3>
+          <p>The world's most capable professional color grading and finishing platform. Used for primary node-based color correction (lift/gamma/gain), secondary qualifications to isolate skin tones and environmental elements, and film-print emulation using custom PowerGrades. Handles full pipeline conforming — bringing an offline Premiere cut into Resolve for final grade and delivery in both broadcast Rec.709 and HDR Dolby Vision masters with precise luma mapping and legal level output.</p>
         </div>
+
+        <div class="comp-card">
+          <div class="comp-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3>Mocha Pro</h3>
+          <p>The gold standard for planar motion tracking and masking in professional post-production. Mocha Pro's planar tracker outperforms point-based trackers on difficult shots — screen replacements on reflective surfaces, roto-masking of fast-moving subjects, and lens distortion removal using its PowerMesh warp. Integrates seamlessly as an After Effects and Premiere plugin, and exports track data natively to Nuke and Flame. Essential for any shot requiring object removal, stabilization of handheld footage, or invisible VFX work.</p>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- 5. HARDWARE SETUP -->
+  <!-- 5. PLUGIN ECOSYSTEM -->
+  <section style="background-color: var(--bg-secondary);">
+    <div class="container fade-up">
+      <div class="section-header center">
+        <h2>Power Plugins &amp; Scripts</h2>
+        <p>The extended arsenal — third-party tools that push the limits of what is possible inside the host applications.</p>
+      </div>
+      <div class="plugin-grid delay-100">
+
+        <div class="plugin-card">
+          <div class="plugin-dot"></div>
+          <div>
+            <h4>Video Copilot Element 3D</h4>
+            <p>Real-time 3D object rendering directly inside After Effects. Used for extruded logo animations, 3D text fly-throughs, and GPU-accelerated particle-based 3D scenes without a full 3D app round-trip.</p>
+          </div>
+        </div>
+
+        <div class="plugin-card">
+          <div class="plugin-dot"></div>
+          <div>
+            <h4>Red Giant Magic Bullet Suite</h4>
+            <p>Premiere-grade color tools accessible inside the NLE. Magic Bullet Looks provides a library of cinematic LUT-based grades; Denoiser III removes high-ISO grain; Colorista delivers node-based secondary grading in-timeline.</p>
+          </div>
+        </div>
+
+        <div class="plugin-card">
+          <div class="plugin-dot"></div>
+          <div>
+            <h4>Sapphire Suite by Boris FX</h4>
+            <p>Over 270 GPU-accelerated effects and transitions for Premiere and After Effects. Sapphire's lens flares, glows, and film-damage effects are the industry benchmark — used in virtually every major broadcast and streaming production.</p>
+          </div>
+        </div>
+
+        <div class="plugin-card">
+          <div class="plugin-dot"></div>
+          <div>
+            <h4>Trapcode Suite</h4>
+            <p>Red Giant's flagship suite powering Particular (3D particle systems), Form (mesh-based particles), Mir (3D terrain and wireframes), and Tao (3D geometry along paths). Indispensable for large-scale organic motion graphics.</p>
+          </div>
+        </div>
+
+        <div class="plugin-card">
+          <div class="plugin-dot"></div>
+          <div>
+            <h4>X-Particles</h4>
+            <p>Cinema 4D's most advanced particle and VFX simulation system. Handles fluid dynamics, granular simulations, crowd systems, and multi-physics interactions — all within the C4D environment and fully renderable via Redshift and Octane.</p>
+          </div>
+        </div>
+
+        <div class="plugin-card">
+          <div class="plugin-dot"></div>
+          <div>
+            <h4>Optical Flares</h4>
+            <p>Video Copilot's physics-based lens flare plugin with a real-time 3D preview. Used to add optically accurate camera lens artifacts, anamorphic streaks, and chromatic glow to composites — bridging the gap between CGI and live-action shots.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. HARDWARE SETUP -->
   <section style="background-color: var(--bg-tertiary);">
-    <div class="container fade-up center" style="max-width: 800px; text-align: center;">
-      <h2 style="font-size: 3rem; margin-bottom: 2rem;">Uncompromising Hardware</h2>
-      <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
-        You cannot deliver heavy 8K RED RAW timelines or complex 3D renders on a standard laptop. My custom-built workstation guarantees I never miss a deadline due to rendering bottlenecks.
-      </p>
-      <div class="grid grid-3" style="margin-top: 3rem; text-align: left;">
-        <div>
-          <h4 style="font-size: 1.2rem; color: var(--primary);">Compute</h4>
-          <p style="color: var(--text-secondary); margin-top: 0.5rem;">AMD Threadripper PRO 64-Core Processor</p>
+    <div class="container fade-up" style="max-width: 920px;">
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <h2 style="font-size: 3rem; margin-bottom: 1.25rem;">Uncompromising Hardware</h2>
+        <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.85; max-width: 700px; margin: 0 auto;">
+          You cannot deliver heavy 8K RED RAW timelines or complex 3D renders on a standard laptop. My custom-built workstation guarantees I never miss a deadline due to rendering bottlenecks — every component is purpose-chosen for creative performance.
+        </p>
+      </div>
+      <div class="grid grid-3" style="gap: 1.25rem;">
+
+        <div class="hw-spec-card">
+          <h4>Compute</h4>
+          <div class="hw-value">AMD Threadripper PRO — 64 Cores</div>
+          <p class="hw-note">96-thread parallel processing ensures real-time audio mixing, background Blender CPU rendering, and full-resolution preview playback simultaneously — zero compromise, no queuing.</p>
         </div>
-        <div>
-          <h4 style="font-size: 1.2rem; color: var(--primary);">Graphics</h4>
-          <p style="color: var(--text-secondary); margin-top: 0.5rem;">Dual NVIDIA RTX 4090 GPUs</p>
+
+        <div class="hw-spec-card">
+          <h4>Graphics</h4>
+          <div class="hw-value">Dual NVIDIA RTX 4090 — NVLink</div>
+          <p class="hw-note">48GB combined VRAM via NVLink bridge. Runs Redshift, OctaneRender, and Unreal Engine simultaneously across two cards — cutting complex 3D render times by up to 60% versus a single GPU.</p>
         </div>
-        <div>
-          <h4 style="font-size: 1.2rem; color: var(--primary);">Memory</h4>
-          <p style="color: var(--text-secondary); margin-top: 0.5rem;">256GB ECC DDR5 RAM & 16TB NVMe Gen5</p>
+
+        <div class="hw-spec-card">
+          <h4>Memory</h4>
+          <div class="hw-value">256 GB ECC DDR5 RAM</div>
+          <p class="hw-note">Error-correcting memory eliminates data corruption risk during multi-hour render sessions. Allows full 8K RED RAW footage to be cached entirely in RAM for true real-time editorial playback.</p>
         </div>
+
+        <div class="hw-spec-card">
+          <h4>Storage</h4>
+          <div class="hw-value">16 TB NVMe Gen 5 RAID Array</div>
+          <p class="hw-note">Dual NVMe drives in RAID 0 deliver sustained read speeds exceeding 14 GB/s — fast enough to stream multiple simultaneous 8K RAW camera angles without dropped frames or proxy dependence.</p>
+        </div>
+
+        <div class="hw-spec-card">
+          <h4>Display</h4>
+          <div class="hw-value">Dual 32&Prime; 4K OLED Reference Monitors</div>
+          <p class="hw-note">Factory-calibrated to DCI-P3 and Rec.2020 color spaces. True-black OLED panels ensure accurate HDR grading with 0.0005 nit black floor — critical for Dolby Vision master delivery and precise compositing work.</p>
+        </div>
+
+        <div class="hw-spec-card" style="display: flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--primary) 8%, var(--bg-primary)); border-color: color-mix(in srgb, var(--primary) 30%, transparent);">
+          <div style="text-align: center;">
+            <div style="font-size: 2.5rem; font-weight: 900; color: var(--primary); line-height: 1;">∞</div>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem; line-height: 1.5;">No hardware<br>bottlenecks. Ever.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- 6. CTA BANNER -->
+  <!-- 7. WORKFLOW PHILOSOPHY -->
+  <section class="philosophy-section">
+    <div class="container fade-up" style="padding-top: 5rem; padding-bottom: 5rem;">
+      <div class="philosophy-inner">
+        <span class="eyebrow">Technical Philosophy</span>
+        <h2>Speed Without Sacrifice</h2>
+        <p>
+          Every tool in this stack is chosen with a single objective: to eliminate the gap between an idea and its execution. Speed matters — but not at the cost of craft. By building deep fluency across the entire pipeline, from concept sketch in Figma to final color grade in DaVinci Resolve, I can make real-time creative decisions at every stage rather than being forced to wait for renders, exports, or specialist hand-offs. The result is a faster iteration cycle with zero reduction in visual quality.
+        </p>
+        <p>
+          True technical mastery is invisible. The audience should never see the complexity behind the frame — they should only feel the impact of what appears on screen. This philosophy drives every hardware purchase, every plugin investment, and every hour spent learning the internals of a new tool. When the technology disappears into muscle memory, creativity becomes limitless.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. CTA BANNER -->
   <section style="background-color: var(--primary); color: var(--secondary); text-align: center;">
     <div class="container fade-up" style="max-width: 700px;">
       <h2 style="font-size: 3rem; margin-bottom: 1.5rem; color: var(--secondary);">Need technical expertise?</h2>
@@ -192,7 +566,7 @@
         </div>
         <div class="footer-col">
           <h4>Navigation</h4>
-          <div class="footer-links"><a href="reels.html">Demo Reels</a><a href="software.html">Software</a><a href="projects.html">Case Studies</a><a href="process.html">Process & Times</a></div>
+          <div class="footer-links"><a href="reels.html">Demo Reels</a><a href="software.html">Software</a><a href="projects.html">Case Studies</a><a href="process.html">Process &amp; Times</a></div>
         </div>
         <div class="footer-col">
           <h4>Social</h4>
@@ -205,5 +579,40 @@
 
   <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
   <script src="/assets/js/script.js"></script>
+
+  <!-- Progress Bar Animation -->
+  <script>
+    (function () {
+      var triggered = false;
+      function animateBars() {
+        if (triggered) return;
+        var fills = document.querySelectorAll('.progress-bar-fill');
+        var allVisible = true;
+        fills.forEach(function (el) {
+          var rect = el.getBoundingClientRect();
+          if (rect.top > window.innerHeight) { allVisible = false; }
+        });
+        if (fills.length && !triggered) {
+          // Animate when first card enters viewport
+          var firstCard = document.querySelector('.skill-card');
+          if (firstCard) {
+            var r = firstCard.getBoundingClientRect();
+            if (r.top < window.innerHeight - 60) {
+              triggered = true;
+              fills.forEach(function (fill) {
+                var target = fill.getAttribute('data-width') || '0';
+                fill.style.width = target + '%';
+              });
+            }
+          }
+        }
+      }
+      window.addEventListener('scroll', animateBars, { passive: true });
+      window.addEventListener('load', animateBars);
+      // Also fire after a short delay for above-fold cards
+      setTimeout(animateBars, 400);
+    })();
+  </script>
+
 </body>
 </html>

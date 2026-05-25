@@ -11,7 +11,7 @@ class AssistApp {
       mobileToggle: document.getElementById('mobileMenuToggle'),
       navMenu: document.getElementById('navMenu'),
       header: document.querySelector('header'),
-      fadeElements: document.querySelectorAll('.fade-up'),
+      fadeElements: document.querySelectorAll('.fade-up, .reveal-fade, .reveal-scale, .reveal-left, .reveal-right'),
       magneticElements: document.querySelectorAll('[data-magnetic]')
     };
     
@@ -20,11 +20,14 @@ class AssistApp {
   }
 
   init() {
+    this.addMagneticAttributes();
     this.initTheme();
     this.initRTL();
     this.initMobileMenu();
     this.initScrollObserver();
     this.initLenis();
+    this.initScrollIndicator();
+    this.initBackToTopButton();
     
     // Only init advanced cursor/magnetic effects on non-touch devices
     if (window.matchMedia("(pointer: fine)").matches) {
@@ -41,6 +44,61 @@ class AssistApp {
         this.DOM.header.classList.remove('scrolled');
       }
     }, { passive: true });
+  }
+
+  addMagneticAttributes() {
+    const targets = document.querySelectorAll(
+      '.logo, .nav-link, .theme-toggle, #themeToggle, .btn, .social-icon, .metric-pill, .tool-pill, .filter-btn, .back-to-top'
+    );
+    targets.forEach(el => {
+      if (!el.hasAttribute('data-magnetic')) {
+        el.setAttribute('data-magnetic', 'true');
+      }
+    });
+  }
+
+  initScrollIndicator() {
+    const progressBar = document.createElement('div');
+    progressBar.className = 'scroll-progress';
+    document.body.appendChild(progressBar);
+
+    window.addEventListener('scroll', () => {
+      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      if (windowHeight > 0) {
+        const scrolled = (window.scrollY / windowHeight) * 100;
+        progressBar.style.width = scrolled + '%';
+      }
+    }, { passive: true });
+  }
+
+  initBackToTopButton() {
+    const btn = document.createElement('button');
+    btn.id = 'backToTop';
+    btn.className = 'back-to-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.setAttribute('data-magnetic', 'true');
+    btn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    `;
+    document.body.appendChild(btn);
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        btn.classList.add('show');
+      } else {
+        btn.classList.remove('show');
+      }
+    }, { passive: true });
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
   }
 
   // ==========================================
@@ -115,6 +173,8 @@ class AssistApp {
   // 3. MAGNETIC HOVER EFFECTS
   // ==========================================
   initMagneticEffects() {
+    // Re-select magnetic elements since we added attributes dynamically
+    this.DOM.magneticElements = document.querySelectorAll('[data-magnetic]');
     if (!this.DOM.magneticElements.length) return;
 
     this.DOM.magneticElements.forEach(el => {

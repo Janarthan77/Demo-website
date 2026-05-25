@@ -1323,3 +1323,148 @@ html[dir="rtl"] .dashboard-main {
 @media (max-width: 768px) {
   .mobile-nav-ctas { display: flex; }
 }
+
+/* ==========================================================================
+   EXTRA HIGH-FIDELITY ANIMATIONS & EFFECTS
+   ========================================================================== */
+
+/* ── Scroll Progress Indicator ── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary) 0%, rgba(128,128,128,0.8) 100%);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  pointer-events: none;
+  transition: width 0.1s ease-out;
+}
+[data-theme="dark"] .scroll-progress {
+  background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0.4) 100%);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* ── Floating Back to Top Button ── */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.8);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.3s ease, 
+              border-color 0.3s ease, 
+              color 0.3s ease;
+  box-shadow: var(--shadow-md);
+}
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+.back-to-top:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--secondary);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ── Custom Scroll Reveal Styles ── */
+.reveal-fade {
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+}
+.reveal-fade.in-view {
+  opacity: 1;
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-scale.in-view {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-left.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-right.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Micro-Animations on Hover ── */
+.logo-item {
+  transition: filter 0.4s ease, transform 0.4s ease, opacity 0.4s ease;
+}
+.logo-item:hover {
+  transform: translateY(-5px) scale(1.05);
+  opacity: 1 !important;
+  filter: grayscale(0%) contrast(1.1) !important;
+}
+
+/* Tool badge animations */
+.tool-pill, .metric-pill, .badge {
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.tool-pill:hover, .metric-pill:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
+/* Rotate animation for Theme Switcher */
+#themeToggle .theme-icon-dark, #themeToggle .theme-icon-light {
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+#themeToggle:hover .theme-icon-dark, #themeToggle:hover .theme-icon-light {
+  transform: rotate(45deg) scale(1.1);
+}
+
+/* Card hover glow & 3D shadow lift */
+.card, .bts-card, .case-study-card {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card:hover, .bts-card:hover, .case-study-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+}
+[data-theme="dark"] .card:hover, [data-theme="dark"] .bts-card:hover, [data-theme="dark"] .case-study-card:hover {
+  box-shadow: 0 20px 35px rgba(255, 255, 255, 0.08);
+}
+

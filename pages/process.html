@@ -3,15 +3,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Creative Portfolio | Process & Times</title>
+  <title>Creative Portfolio | Process &amp; Times</title>
   <link rel="stylesheet" href="/assets/css/style.css">
   <style>
+    /* ── TABLE ── */
     .time-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
     .time-table th, .time-table td { padding: 1.5rem; border-bottom: 1px solid var(--border); text-align: left; }
     .time-table th { font-weight: 700; color: var(--text-primary); background-color: var(--bg-secondary); }
     .time-table tr:hover { background-color: var(--bg-tertiary); }
-    .step-card { background: var(--bg-secondary); padding: 2.5rem; border-radius: var(--radius-lg); position: relative; border-left: 4px solid var(--primary); }
+
+    /* complexity badges */
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .badge-low    { background: #dcfce7; color: #166534; }
+    .badge-medium { background: #fef9c3; color: #854d0e; }
+    .badge-high   { background: #fee2e2; color: #991b1b; }
+    .badge-very-high { background: #fce7f3; color: #9d174d; }
+    .badge-extreme { background: #ede9fe; color: #5b21b6; }
+    .badge-variable { background: #e0f2fe; color: #075985; }
+    [data-theme="dark"] .badge-low    { background: #14532d; color: #86efac; }
+    [data-theme="dark"] .badge-medium { background: #422006; color: #fde68a; }
+    [data-theme="dark"] .badge-high   { background: #450a0a; color: #fca5a5; }
+    [data-theme="dark"] .badge-very-high { background: #500724; color: #f9a8d4; }
+    [data-theme="dark"] .badge-extreme { background: #2e1065; color: #c4b5fd; }
+    [data-theme="dark"] .badge-variable { background: #082f49; color: #7dd3fc; }
+
+    .table-note {
+      margin-top: 1.25rem;
+      padding: 1rem 1.5rem;
+      border-left: 3px solid var(--primary);
+      background: var(--bg-secondary);
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .table-note strong { color: var(--text-primary); }
+
+    /* ── STEP CARDS ── */
+    .step-card {
+      background: var(--bg-secondary);
+      padding: 2.5rem;
+      border-radius: var(--radius-lg);
+      position: relative;
+      border-left: 4px solid var(--primary);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .step-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
     .step-number { position: absolute; top: 1rem; right: 1.5rem; font-size: 4rem; font-weight: 800; opacity: 0.1; }
+
+    /* ── TOOLS GRID ── */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .tool-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .tool-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+    .tool-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      background: var(--bg-tertiary);
+      flex-shrink: 0;
+    }
+    .tool-name { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); }
+    .tool-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+
+    /* ── REVISION POLICY ── */
+    .policy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      text-align: left;
+    }
+    .policy-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .policy-card-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .policy-card h4 { font-size: 1.1rem; color: var(--text-primary); margin: 0; }
+    .policy-card p  { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin: 0; }
+
+    /* ── WHAT TO PREPARE ── */
+    .prepare-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 2.5rem 0 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+    .prepare-checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .prepare-checklist li:hover { border-color: var(--primary); transform: translateY(-2px); }
+    .check-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--secondary);
+    }
+    .check-text-title { font-weight: 700; font-size: 0.95rem; color: var(--text-primary); display: block; margin-bottom: 0.2rem; }
+    .check-text-desc  { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
+
+    /* ── FAQ ACCORDION overrides ── */
+    .faq-wrapper { display: flex; flex-direction: column; gap: 0; }
   </style>
 </head>
 <body>
@@ -67,17 +214,21 @@
     </div>
   </header>
 
-  <!-- 1. HERO SECTION -->
+  <!-- ═══════════════════════════════════════════
+       1. HERO SECTION
+  ════════════════════════════════════════════════ -->
   <section class="hero" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('/assets/images/banner_process.png') center/cover no-repeat; padding-top: calc(var(--header-height) + 6rem); padding-bottom: 4rem; text-align: center; color: white;">
     <div class="container fade-up">
-      <h1 class="hero-title" style="font-size: 4rem; margin-bottom: 1rem;">Process & Timelines</h1>
+      <h1 class="hero-title" style="font-size: 4rem; margin-bottom: 1rem;">Process &amp; Timelines</h1>
       <p class="hero-description" style="font-size: 1.25rem; margin: 0 auto; max-width: 700px;">
         High-end creative work requires structured, transparent pipelines. Review my baseline schedules and onboarding process below.
       </p>
     </div>
   </section>
 
-  <!-- 2. TURNAROUND ESTIMATES TABLE -->
+  <!-- ═══════════════════════════════════════════
+       2. TURNAROUND ESTIMATES TABLE
+  ════════════════════════════════════════════════ -->
   <section>
     <div class="container fade-up">
       <div class="section-header">
@@ -97,104 +248,337 @@
           <tbody>
             <tr>
               <td>Short-Form Social Media (Reels/TikTok)</td>
-              <td>Low - Medium</td>
-              <td>24 - 48 Hours</td>
+              <td><span class="badge badge-low">Low – Medium</span></td>
+              <td>24 – 48 Hours</td>
               <td>1 Round</td>
             </tr>
             <tr>
               <td>Corporate Interview / Talking Head</td>
-              <td>Medium</td>
-              <td>3 - 5 Business Days</td>
+              <td><span class="badge badge-medium">Medium</span></td>
+              <td>3 – 5 Business Days</td>
               <td>2 Rounds</td>
             </tr>
             <tr>
               <td>2D Explainer Animation (60s)</td>
-              <td>Medium - High</td>
-              <td>2 - 3 Weeks</td>
+              <td><span class="badge badge-medium">Medium – High</span></td>
+              <td>2 – 3 Weeks</td>
               <td>3 Rounds</td>
             </tr>
             <tr>
-              <td>3D Product Rendering & Animation</td>
-              <td>High</td>
-              <td>3 - 4 Weeks</td>
+              <td>3D Product Rendering &amp; Animation</td>
+              <td><span class="badge badge-high">High</span></td>
+              <td>3 – 4 Weeks</td>
               <td>3 Rounds</td>
             </tr>
             <tr>
               <td>VFX Shot Work (Cleanups/Compositing)</td>
-              <td>Variable</td>
+              <td><span class="badge badge-variable">Variable</span></td>
               <td>Quoted per shot</td>
               <td>2 Rounds</td>
+            </tr>
+            <tr>
+              <td>Full Brand Identity Animation Package</td>
+              <td><span class="badge badge-high">High</span></td>
+              <td>5 – 6 Weeks</td>
+              <td>3 Rounds</td>
+            </tr>
+            <tr>
+              <td>Feature Film VFX (per shot)</td>
+              <td><span class="badge badge-very-high">Very High</span></td>
+              <td>Quoted per shot</td>
+              <td>2 Rounds</td>
+            </tr>
+            <tr>
+              <td>Real-Time / Unreal Engine Experience</td>
+              <td><span class="badge badge-extreme">Extreme</span></td>
+              <td>6 – 10 Weeks</td>
+              <td>Custom</td>
             </tr>
           </tbody>
         </table>
       </div>
+      <p class="table-note">
+        <strong>⚡ Rush Fees Apply:</strong> Projects requiring a turnaround faster than the baseline estimates above are subject to a rush surcharge. A <strong>+50% rush fee</strong> is added for any deliverable needed within 48 hours. Rush availability is not guaranteed and depends on current studio capacity — please enquire before booking.
+      </p>
     </div>
   </section>
 
-  <!-- 3. ONBOARDING PROCESS -->
+  <!-- ═══════════════════════════════════════════
+       3. THE 3-STEP PIPELINE
+  ════════════════════════════════════════════════ -->
   <section style="background-color: var(--bg-secondary);">
     <div class="container fade-up">
       <div class="section-header center">
         <h2>The 3-Step Pipeline</h2>
-        <p>How we move from initial contact to final delivery.</p>
+        <p>How we move from initial contact to final delivery — no surprises, no ambiguity.</p>
       </div>
       <div class="grid grid-3 delay-100">
+
         <div class="step-card">
           <div class="step-number">01</div>
-          <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Discovery & Quote</h3>
-          <p style="color: var(--text-secondary);">You submit an inquiry. We hop on a 15-minute call to align on creative vision, deadlines, and budget. I send over a formal SOW and quote.</p>
+          <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Discovery &amp; Quote</h3>
+          <p style="color: var(--text-secondary);">
+            You submit an inquiry through the contact form detailing the project scope, desired mood, and any reference material. We then hop on a focused 15-minute discovery call to align on creative vision, technical constraints, deadlines, and budget. Following the call, I conduct an internal feasibility review and assemble a detailed Statement of Work (SOW) outlining deliverables, milestones, and terms. A formal quote is issued within 24 hours — no guesswork, no hidden costs.
+          </p>
         </div>
+
         <div class="step-card">
           <div class="step-number">02</div>
-          <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Asset Handoff & Edit</h3>
-          <p style="color: var(--text-secondary);">You provide footage, brand guidelines, and assets via Frame.io or Drive. I begin the offline edit and motion graphics blockout.</p>
+          <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Asset Handoff &amp; Edit</h3>
+          <p style="color: var(--text-secondary);">
+            Once the deposit is received and the SOW is signed, we kick off the production phase. You provide footage, brand guidelines, music direction, and any raw assets via our shared Frame.io workspace or Google Drive folder — both are set up for you on day one. I begin with a structured offline edit or motion blockout, establishing the timing, pacing, and overall creative skeleton before committing to heavy rendering or compositing. Regular progress check-ins via Slack keep you informed at every milestone without disrupting the creative flow.
+          </p>
         </div>
+
         <div class="step-card">
           <div class="step-number">03</div>
-          <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Review & Final Delivery</h3>
-          <p style="color: var(--text-secondary);">You review V1 via Frame.io. We iterate through the agreed revision rounds. Final masters are delivered in requested codecs (ProRes, H.264).</p>
+          <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Review &amp; Final Delivery</h3>
+          <p style="color: var(--text-secondary);">
+            Version 1 is shared via a Frame.io review link, enabling you to drop precise frame-accurate comments directly on the timeline — no confusing email chains. We iterate through the agreed revision rounds within the defined scope, refining colour, pacing, and sound until the piece is locked. Final masters are exported in all requested codecs and resolutions (ProRes 4444, H.264, HEVC, DNxHD, or platform-specific presets) and delivered via a secure Google Drive handoff folder alongside all associated project documentation.
+          </p>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- 4. REVISIONS POLICY -->
+  <!-- ═══════════════════════════════════════════
+       4. COMMUNICATION & TOOLS  (NEW SECTION)
+  ════════════════════════════════════════════════ -->
   <section>
-    <div class="container fade-up center" style="max-width: 800px; text-align: center;">
-      <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Clear Revision Policies</h2>
-      <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
-        Revisions are a natural part of the creative process. To prevent scope creep, all quotes explicitly define the number of revision rounds included (typically 2 to 3). 
-      </p>
-      <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8;">
-        Additional rounds or total creative pivots requested after V1 are billed at my standard hourly rate of $150/hr. I use Frame.io for all review links, allowing you to leave precise, frame-accurate notes to ensure nothing gets lost in translation.
-      </p>
+    <div class="container fade-up">
+      <div class="section-header center">
+        <h2>Communication &amp; Collaboration Tools</h2>
+        <p>Every project runs on the same proven stack — so you always know where things stand.</p>
+      </div>
+      <div class="tools-grid">
+
+        <div class="tool-card">
+          <div class="tool-icon">🎬</div>
+          <div class="tool-name">Frame.io</div>
+          <div class="tool-desc">
+            All review links are delivered through Frame.io, enabling frame-accurate, time-coded feedback directly on the video. No more "at around 0:32" — every note is pinned to the exact frame, eliminating miscommunication and accelerating revision cycles.
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon">💬</div>
+          <div class="tool-name">Slack</div>
+          <div class="tool-desc">
+            A dedicated project Slack channel is created for every engagement. Real-time communication keeps back-and-forth fast, async-friendly, and fully archived. Quick approvals, file previews, and status pings all happen in one searchable thread — no email noise.
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon">📁</div>
+          <div class="tool-name">Google Drive</div>
+          <div class="tool-desc">
+            A structured shared Drive folder is provisioned at kick-off for asset exchange, master deliverables, and project documentation. Folders are organised by phase (Assets In → Working Files → Deliverables Out) so everyone always knows where to look.
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon">📋</div>
+          <div class="tool-name">Notion</div>
+          <div class="tool-desc">
+            Project tracking, milestones, revision logs, and the full Statement of Work live in a shared Notion workspace. You have read access throughout the project, providing full transparency into timelines, deliverable checklists, and sign-off status at every stage.
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
-  <!-- 5. FAQ -->
+  <!-- ═══════════════════════════════════════════
+       5. REVISION POLICIES  (EXPANDED)
+  ════════════════════════════════════════════════ -->
+  <section style="background-color: var(--bg-secondary);">
+    <div class="container fade-up">
+      <div class="section-header center">
+        <h2>Clear Revision Policies</h2>
+        <p>Transparent rules protect your budget and keep the project on schedule for everyone involved.</p>
+      </div>
+
+      <div class="policy-grid">
+
+        <div class="policy-card">
+          <span class="policy-card-label">Revisions vs. New Direction</span>
+          <h4>What counts as a revision?</h4>
+          <p>
+            A <strong>revision</strong> is any change that refines the approved creative direction — colour grade tweaks, timing adjustments, copy swaps, or minor animation polish. A <strong>new creative direction</strong> — changing the concept, visual style, music genre, or requesting a structural re-edit after V1 approval — constitutes a scope change and is billed separately at the standard hourly rate of <strong>$150/hr</strong>.
+          </p>
+        </div>
+
+        <div class="policy-card">
+          <span class="policy-card-label">Included Rounds</span>
+          <h4>Standard revision rounds</h4>
+          <p>
+            All project quotes explicitly include a set number of revision rounds (typically 2–3, as listed in the turnaround table). Each round is a single batch of consolidated feedback submitted within <strong>48 hours</strong> of receiving the review link. Unconsolidated feedback submitted piecemeal across multiple emails or messages counts as separate rounds.
+          </p>
+        </div>
+
+        <div class="policy-card">
+          <span class="policy-card-label">Rush Delivery</span>
+          <h4>Need it faster?</h4>
+          <p>
+            Rush delivery is available on a case-by-case basis depending on current studio capacity. Deliverables required within <strong>48 hours</strong> of project kick-off carry a <strong>+50% rush surcharge</strong> on the total project fee. Rush requests must be declared at inquiry stage — retrofitting rush requirements mid-project may not always be feasible.
+          </p>
+        </div>
+
+        <div class="policy-card">
+          <span class="policy-card-label">Source File Licensing</span>
+          <h4>Do you need the project files?</h4>
+          <p>
+            Final rendered deliverables are included in every project quote. Source files (After Effects, Premiere Pro, Cinema 4D, Nuke, DaVinci projects) are available under a separate <strong>Source File License</strong> for an additional buyout fee — typically 30–50% of the original project cost. Full IP transfer and white-label rights can also be negotiated for agency partnerships.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       6. WHAT TO PREPARE  (NEW SECTION)
+  ════════════════════════════════════════════════ -->
+  <section>
+    <div class="container fade-up">
+      <div class="section-header center">
+        <h2>What to Prepare Before Kick-Off</h2>
+        <p>The smoother your asset handoff, the faster your project moves through the pipeline. Here's exactly what I need from you on day one.</p>
+      </div>
+
+      <ul class="prepare-checklist">
+
+        <li>
+          <div class="check-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <div>
+            <span class="check-text-title">Brand Guidelines</span>
+            <span class="check-text-desc">Logos in vector format (AI / SVG / EPS), approved typefaces, primary and secondary colour palettes with HEX/CMYK values, and any existing brand animation standards or motion manifesto.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <div>
+            <span class="check-text-title">Reference Videos</span>
+            <span class="check-text-desc">A curated mood board or 3–5 reference videos that capture the tone, pacing, and visual language you're aiming for. Vimeo/YouTube links are fine — the more specific, the better.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <div>
+            <span class="check-text-title">Raw Footage</span>
+            <span class="check-text-desc">All camera originals in their native codec (BRAW, R3D, ProRes, Log-C, S-Log) organised by shoot day and scene. Avoid converting to H.264 before delivery — working from camera originals ensures maximum quality headroom.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <div>
+            <span class="check-text-title">Music &amp; SFX Direction</span>
+            <span class="check-text-desc">Licensed music tracks or a clear brief on the desired genre, tempo, and emotional register. If you're using licensed music from Artlist, Epidemic Sound, or similar, please share the licensed files directly — not streaming links.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <div>
+            <span class="check-text-title">Hard Deadlines</span>
+            <span class="check-text-desc">The final air date, broadcast slot, or campaign launch date — plus any intermediate milestones (e.g. client presentation, internal stakeholder review). This drives the production schedule and determines whether rush fees apply.</span>
+          </div>
+        </li>
+
+        <li>
+          <div class="check-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <div>
+            <span class="check-text-title">Budget Range</span>
+            <span class="check-text-desc">A realistic budget envelope helps me tailor the scope, recommend the right production tier, and avoid proposals that miss the mark. There is no minimum — but knowing the range upfront saves time for both of us.</span>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       7. FAQ  (EXPANDED — 3 original + 5 new)
+  ════════════════════════════════════════════════ -->
   <section style="background-color: var(--bg-tertiary);">
     <div class="container fade-up" style="max-width: 800px;">
       <div class="section-header center">
         <h2>Frequently Asked Questions</h2>
+        <p>Everything you need to know before we get started.</p>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 0;">
+      <div class="faq-wrapper">
+
+        <!-- Original Q1 -->
         <div class="accordion">
           <button class="accordion-header">Do you work on a day rate or project rate?<div class="accordion-icon"></div></button>
-          <div class="accordion-content"><p style="color: var(--text-secondary); line-height: 1.6;">I highly prefer quoting a flat Project Rate. It aligns our incentives: you get a guaranteed price without worrying about billable hours, and I am rewarded for my speed and efficiency.</p></div>
+          <div class="accordion-content"><p style="color: var(--text-secondary); line-height: 1.6;">I highly prefer quoting a flat Project Rate. It aligns our incentives: you get a guaranteed price without worrying about billable hours, and I am rewarded for my speed and efficiency. Day rates are available for on-site studio sessions, live-event coverage, or ongoing agency retainers where the scope cannot be defined upfront.</p></div>
         </div>
+
+        <!-- Original Q2 -->
         <div class="accordion">
           <button class="accordion-header">Can you deliver open project files?<div class="accordion-icon"></div></button>
-          <div class="accordion-content"><p style="color: var(--text-secondary); line-height: 1.6;">Yes, project files (Premiere/AE/C4D) can be handed over upon project completion, but they are subject to an additional buyout fee depending on the project scope.</p></div>
+          <div class="accordion-content"><p style="color: var(--text-secondary); line-height: 1.6;">Yes, project files (Premiere Pro, After Effects, Cinema 4D, Nuke) can be handed over upon project completion, but they are subject to an additional Source File License buyout fee depending on project scope — typically 30–50% of the original project fee. Full IP transfer for white-label or agency use can also be negotiated separately.</p></div>
         </div>
+
+        <!-- Original Q3 -->
         <div class="accordion">
           <button class="accordion-header">Do you handle sound design and mixing?<div class="accordion-icon"></div></button>
-          <div class="accordion-content"><p style="color: var(--text-secondary); line-height: 1.6;">Absolutely. Standard sound design, SFX, and stereo mixing are included in my editing pipeline to ensure the video sounds as good as it looks.</p></div>
+          <div class="accordion-content"><p style="color: var(--text-secondary); line-height: 1.6;">Absolutely. Standard sound design, SFX layering, and stereo mixing are included in my editing pipeline to ensure the video sounds as good as it looks. For projects requiring a full 5.1 or Dolby Atmos mix, broadcast audio mastering, or original music composition, I can bring in trusted specialist collaborators from my network at a transparent pass-through rate.</p></div>
         </div>
+
+        <!-- New Q4 -->
+        <div class="accordion">
+          <button class="accordion-header">What file formats do you deliver in?<div class="accordion-icon"></div></button>
+          <div class="accordion-content"><p style="color: var(--text-secondary); line-height: 1.6;">Delivery formats are specified at the SOW stage and tailored to your platform needs. Common deliverable formats include ProRes 4444 / 422 HQ (for broadcast and archive masters), H.264 and H.265/HEVC (for web, social, and streaming), DNxHD/HR (for Avid workflows), and PNG/EXR image sequences (for compositing handoffs). I can also export platform-specific presets for YouTube, Instagram, TikTok, Vimeo, and DCP theatrical packages on request.</p></div>
+        </div>
+
+        <!-- New Q5 -->
+        <div class="accordion">
+          <button class="accordion-header">Do you require a deposit?<div class="accordion-icon"></div></button>
+          <div class="accordion-content"><p style="color: var(--text-secondary); line-height: 1.6;">Yes. All projects require a <strong>50% deposit</strong> paid upfront before any work begins — this secures your production slot in the schedule and covers initial research and pre-production overhead. The remaining 50% is invoiced upon delivery of the final approved master. For larger multi-phase projects, a milestone-based payment schedule (e.g. 33/33/34%) can be arranged and outlined in the SOW.</p></div>
+        </div>
+
+        <!-- New Q6 -->
+        <div class="accordion">
+          <button class="accordion-header">Can you work with my existing team or agency?<div class="accordion-icon"></div></button>
+          <div class="accordion-content"><p style="color: var(--text-secondary); line-height: 1.6;">Absolutely — collaborative engagements are welcome. I regularly embed within agency teams as a specialist Motion Design or VFX resource, working alongside creative directors, editors, and producers. I'm comfortable operating inside your existing project management stack (whether that's Asana, Monday.com, Jira, or your own system) and can adapt to your review and approval workflows. A quick onboarding call at the start of any multi-stakeholder project is always recommended to align on communication protocols.</p></div>
+        </div>
+
+        <!-- New Q7 -->
+        <div class="accordion">
+          <button class="accordion-header">What is your availability for long-term retainers?<div class="accordion-icon"></div></button>
+          <div class="accordion-content"><p style="color: var(--text-secondary); line-height: 1.6;">Monthly retainer arrangements are available for brands and agencies with a consistent, ongoing need for motion content. Retainers typically cover a defined number of deliverable units or creative hours per month at a discounted rate compared to individual project pricing. Retainer slots are limited and filled on a first-confirmed basis — reach out early if you're looking to lock in consistent availability for a quarter or longer.</p></div>
+        </div>
+
+        <!-- New Q8 -->
+        <div class="accordion">
+          <button class="accordion-header">Do you sign NDAs?<div class="accordion-icon"></div></button>
+          <div class="accordion-content"><p style="color: var(--text-secondary); line-height: 1.6;">Yes, without hesitation. Mutual NDAs are standard practice for any project involving unreleased products, confidential IP, or sensitive brand strategy. You can send your standard NDA for review prior to the discovery call, or I can provide my own studio NDA template if preferred. Signed NDAs are stored securely and respected throughout and beyond the duration of the project.</p></div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- 6. CTA BANNER -->
+  <!-- ═══════════════════════════════════════════
+       8. CTA BANNER
+  ════════════════════════════════════════════════ -->
   <section style="background-color: var(--primary); color: var(--secondary); text-align: center;">
     <div class="container fade-up" style="max-width: 700px;">
       <h2 style="font-size: 3rem; margin-bottom: 1.5rem; color: var(--secondary);">Ready to start?</h2>
@@ -215,7 +599,7 @@
         </div>
         <div class="footer-col">
           <h4>Navigation</h4>
-          <div class="footer-links"><a href="reels.html">Demo Reels</a><a href="software.html">Software</a><a href="projects.html">Case Studies</a><a href="process.html">Process & Times</a></div>
+          <div class="footer-links"><a href="reels.html">Demo Reels</a><a href="software.html">Software</a><a href="projects.html">Case Studies</a><a href="process.html">Process &amp; Times</a></div>
         </div>
         <div class="footer-col">
           <h4>Social</h4>

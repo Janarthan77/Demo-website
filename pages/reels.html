@@ -6,8 +6,254 @@
   <title>Creative Portfolio | Demo Reels</title>
   <link rel="stylesheet" href="/assets/css/style.css">
   <style>
+    /* ── Existing video wrapper ─────────────────────────────────── */
     .video-wrapper { position: relative; width: 100%; padding-bottom: 56.25%; background-color: var(--bg-tertiary); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); margin-bottom: 2rem; }
     .video-wrapper iframe, .video-wrapper video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── Reel meta strip ────────────────────────────────────────── */
+    .reel-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      margin-bottom: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+    }
+    .reel-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .reel-meta-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .reel-meta-value {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .reel-tool-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+    .reel-tool-tag {
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: var(--bg-tertiary);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+    .reel-approach {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 820px;
+    }
+
+    /* ── Stats bar ──────────────────────────────────────────────── */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+    }
+    @media (max-width: 700px) {
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+    .stat-cell {
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border);
+      transition: background 0.25s;
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-cell:hover { background: var(--bg-tertiary); }
+    .stat-number {
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ── Disciplines grid ───────────────────────────────────────── */
+    .disciplines-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 820px) {
+      .disciplines-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .disciplines-grid { grid-template-columns: 1fr; }
+    }
+    .discipline-card {
+      padding: 1.75rem 1.5rem;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+    .discipline-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+      border-color: var(--primary);
+    }
+    .discipline-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.25rem;
+      color: var(--secondary);
+    }
+    .discipline-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary, currentColor);
+      letter-spacing: 0.01em;
+    }
+    .discipline-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Pull-quote ─────────────────────────────────────────────── */
+    .pull-quote {
+      margin: 2.5rem auto;
+      max-width: 700px;
+      padding: 1.5rem 2rem;
+      border-left: 4px solid var(--primary);
+      background: var(--bg-secondary);
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      text-align: left;
+    }
+
+    /* ── Testimonial ────────────────────────────────────────────── */
+    .testimonial-card {
+      max-width: 780px;
+      margin: 0 auto;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      padding: 3rem 3.5rem;
+      position: relative;
+      text-align: left;
+    }
+    .testimonial-card::before {
+      content: '\201C';
+      position: absolute;
+      top: 1rem;
+      left: 2rem;
+      font-size: 6rem;
+      line-height: 1;
+      color: var(--primary);
+      opacity: 0.18;
+      font-family: Georgia, serif;
+      pointer-events: none;
+    }
+    .testimonial-body {
+      font-size: 1.15rem;
+      line-height: 1.85;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .testimonial-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--secondary);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .testimonial-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+    }
+    .testimonial-role {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+    .star-row {
+      display: flex;
+      gap: 0.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .star-row span {
+      color: #f5a623;
+      font-size: 1.1rem;
+    }
+
+    /* ── Mobile responsive fixes ────────────────────────────────── */
+    @media (max-width: 768px) {
+      section { padding-block: 3.5rem; }
+      .stat-cell { padding: 1.75rem 1rem; }
+      .stat-number { font-size: 2rem; }
+      .stat-label { font-size: 0.7rem; }
+      .testimonial-card { padding: 2rem 1.5rem; }
+      .testimonial-body { font-size: 1rem; }
+      .pull-quote { font-size: 1.05rem; padding: 1.25rem 1.5rem; }
+      .reel-meta { gap: 0.75rem 1rem; padding: 1rem; }
+    }
+    @media (max-width: 480px) {
+      .stat-number { font-size: 1.75rem; }
+      .stats-bar { border-radius: var(--radius-md); }
+      .stat-cell { border-right: none !important; border-bottom: 1px solid var(--border); }
+      .stat-cell:last-child { border-bottom: none; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr) !important; }
+      .stat-cell:nth-child(2n) { border-right: none !important; }
+      .stat-cell:nth-child(odd) { border-right: 1px solid var(--border) !important; }
+    }
   </style>
 </head>
 <body>
@@ -65,69 +311,313 @@
     </div>
   </header>
 
-  <!-- 1. HERO SECTION -->
+  <!-- ═══════════════════════════════════════════════════════════════
+       1. HERO SECTION
+  ════════════════════════════════════════════════════════════════ -->
   <section class="hero" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('/assets/images/banner_reels.png') center/cover no-repeat; padding-top: calc(var(--header-height) + 6rem); padding-bottom: 4rem; text-align: center; color: white;">
     <div class="container fade-up">
       <h1 class="hero-title" style="font-size: 4rem; margin-bottom: 1rem;">Demo Reels</h1>
       <p class="hero-description" style="font-size: 1.25rem; margin: 0 auto; max-width: 700px;">
-        A curated selection of my best commercial, narrative, and visual effects work from 2024-2026. Put on your headphones.
+        A curated selection of my best commercial, narrative, and visual effects work from 2024–2026. Put on your headphones.
       </p>
     </div>
   </section>
 
-  <!-- 2. MAIN DIRECTOR REEL -->
-  <section>
+  <!-- ═══════════════════════════════════════════════════════════════
+       2. MAIN DIRECTOR REEL
+  ════════════════════════════════════════════════════════════════ -->
+  <section style="padding: 5rem 0;">
     <div class="container fade-up delay-100">
       <div class="section-header">
         <h2 style="font-size: 2.5rem;">2026 Director Showreel</h2>
         <p>The definitive collection of my editing pacing, color grading, and structural narrative approach.</p>
       </div>
+
+      <!-- Video -->
       <div class="video-wrapper">
         <iframe src="https://www.youtube.com/embed/tO01J-M3g0U?autoplay=1&mute=1&loop=1&playlist=tO01J-M3g0U&controls=1&rel=0" title="Director Showreel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
       </div>
+
+      <!-- Reel details -->
+      <div class="reel-meta">
+        <div class="reel-meta-item">
+          <span class="reel-meta-label">Duration</span>
+          <span class="reel-meta-value">3 min 42 sec</span>
+        </div>
+        <div class="reel-meta-item">
+          <span class="reel-meta-label">Genre</span>
+          <span class="reel-meta-value">Narrative &amp; Documentary</span>
+        </div>
+        <div class="reel-meta-item">
+          <span class="reel-meta-label">Year</span>
+          <span class="reel-meta-value">2024 – 2026</span>
+        </div>
+        <div class="reel-meta-item">
+          <span class="reel-meta-label">Tools Used</span>
+          <div class="reel-tool-tags">
+            <span class="reel-tool-tag">After Effects</span>
+            <span class="reel-tool-tag">Premiere Pro</span>
+            <span class="reel-tool-tag">DaVinci Resolve</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="reel-approach">
+        Every cut in this reel is a deliberate editorial choice. The philosophy behind this showreel centers on rhythm — the invisible architecture that separates a sequence of clips from a genuine cinematic experience. Each project was selected not for its production budget but for how cleanly it illustrates the interplay between pacing, visual language, and emotional resonance. The color grade alone took over three weeks to reach a point where every scene felt like it breathed at the same tempo, whether the footage was shot on a RED MONSTRO, a Sony FX3, or a mirrorless in natural light.
+      </p>
     </div>
   </section>
 
-  <!-- 3. COMMERCIAL / MOGRAPH REEL -->
-  <section style="background-color: var(--bg-secondary);">
+  <!-- ═══════════════════════════════════════════════════════════════
+       3. COMMERCIAL MOTION GRAPHICS REEL
+  ════════════════════════════════════════════════════════════════ -->
+  <section style="background-color: var(--bg-secondary); padding: 5rem 0;">
     <div class="container fade-up">
       <div class="section-header">
         <h2 style="font-size: 2.5rem;">Commercial Motion Graphics Reel</h2>
         <p>Fast-paced, brand-centric 2D/3D motion graphics designed for extremely high engagement.</p>
       </div>
+
+      <!-- Video -->
       <div class="video-wrapper">
         <iframe src="https://www.youtube.com/embed/LXb3EKWsInQ?autoplay=1&mute=1&loop=1&playlist=LXb3EKWsInQ&controls=1&rel=0" title="Commercial Showreel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
       </div>
+
+      <!-- Reel details -->
+      <div class="reel-meta">
+        <div class="reel-meta-item">
+          <span class="reel-meta-label">Duration</span>
+          <span class="reel-meta-value">2 min 18 sec</span>
+        </div>
+        <div class="reel-meta-item">
+          <span class="reel-meta-label">Client Types</span>
+          <span class="reel-meta-value">FMCG · Tech · Lifestyle · Fintech</span>
+        </div>
+        <div class="reel-meta-item">
+          <span class="reel-meta-label">Key Techniques</span>
+          <div class="reel-tool-tags">
+            <span class="reel-tool-tag">Kinetic Typography</span>
+            <span class="reel-tool-tag">3D Extrusion</span>
+            <span class="reel-tool-tag">Loop Animation</span>
+            <span class="reel-tool-tag">Brand Systems</span>
+          </div>
+        </div>
+        <div class="reel-meta-item">
+          <span class="reel-meta-label">Deliverable Formats</span>
+          <span class="reel-meta-value">16:9 · 9:16 · 1:1 Social Cuts</span>
+        </div>
+      </div>
+
+      <p class="reel-approach">
+        Commercial motion graphics demand precision at the millisecond level — a brand reveal that fires 4 frames too late loses its punch entirely. This reel showcases work produced across broadcast, digital OOH, and social-first campaigns where the brief ranged from "animate our logo" to "build an entire visual universe for our product launch." Every asset here was delivered on a production timeline, under real-world revision cycles, without sacrificing quality.
+      </p>
     </div>
   </section>
 
-  <!-- 4. VFX BREAKDOWN REEL -->
-  <section>
+  <!-- ═══════════════════════════════════════════════════════════════
+       4. VFX BREAKDOWN REEL
+  ════════════════════════════════════════════════════════════════ -->
+  <section style="padding: 5rem 0;">
     <div class="container fade-up">
       <div class="section-header">
-        <h2 style="font-size: 2.5rem;">VFX & Compositing Breakdown</h2>
+        <h2 style="font-size: 2.5rem;">VFX &amp; Compositing Breakdown</h2>
         <p>A technical deep-dive into before/after plates, rotoscoping, CGI integration, and node-based compositing.</p>
       </div>
+
+      <!-- Video -->
       <div class="video-wrapper">
         <iframe src="https://www.youtube.com/embed/aqz-KE-bpKQ?autoplay=1&mute=1&loop=1&playlist=aqz-KE-bpKQ&controls=1&rel=0" title="VFX Showreel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
       </div>
+
+      <!-- Reel details -->
+      <div class="reel-meta">
+        <div class="reel-meta-item">
+          <span class="reel-meta-label">Shot Count</span>
+          <span class="reel-meta-value">60+ individual VFX shots</span>
+        </div>
+        <div class="reel-meta-item">
+          <span class="reel-meta-label">Primary Software</span>
+          <div class="reel-tool-tags">
+            <span class="reel-tool-tag">Nuke</span>
+            <span class="reel-tool-tag">After Effects</span>
+            <span class="reel-tool-tag">Blender</span>
+            <span class="reel-tool-tag">Mocha Pro</span>
+          </div>
+        </div>
+        <div class="reel-meta-item">
+          <span class="reel-meta-label">Core Techniques</span>
+          <div class="reel-tool-tags">
+            <span class="reel-tool-tag">Green Screen Keying</span>
+            <span class="reel-tool-tag">Rotoscoping</span>
+            <span class="reel-tool-tag">CGI Integration</span>
+            <span class="reel-tool-tag">Camera Tracking</span>
+          </div>
+        </div>
+        <div class="reel-meta-item">
+          <span class="reel-meta-label">Rendering Pipeline</span>
+          <span class="reel-meta-value">EXR Multi-pass · ACES Color Science</span>
+        </div>
+      </div>
+
+      <p class="reel-approach">
+        This breakdown reel is structured as a split-screen journey: left side raw plate, right side the composited result. You will see invisible wire removal, crowd duplication, environment replacement, and fully CG product integration. Each shot is annotated with the challenge it solved. The goal was never just to make it look good — the goal was to make it look like it never happened.
+      </p>
     </div>
   </section>
 
-  <!-- 5. EDITING PHILOSOPHY -->
-  <section style="background-color: var(--bg-tertiary);">
+  <!-- ═══════════════════════════════════════════════════════════════
+       5. REEL STATS
+  ════════════════════════════════════════════════════════════════ -->
+  <section style="background-color: var(--bg-secondary); padding: 5rem 0;">
+    <div class="container fade-up">
+      <div class="section-header" style="margin-bottom: 3rem;">
+        <h2 style="font-size: 2.5rem;">By the Numbers</h2>
+        <p>The body of work, distilled into metrics that matter.</p>
+      </div>
+      <div class="stats-bar">
+        <div class="stat-cell">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Distinct Reels</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number">150+</div>
+          <div class="stat-label">Individual Shots</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number">8+</div>
+          <div class="stat-label">Years in Post</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number">12</div>
+          <div class="stat-label">International Awards</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       6. DISCIPLINES COVERED
+  ════════════════════════════════════════════════════════════════ -->
+  <section style="padding: 5rem 0;">
+    <div class="container fade-up">
+      <div class="section-header" style="margin-bottom: 3rem;">
+        <h2 style="font-size: 2.5rem;">Disciplines Covered</h2>
+        <p>Six core specializations, each with its own craft and creative demands.</p>
+      </div>
+      <div class="disciplines-grid">
+
+        <!-- 1. Kinetic Typography -->
+        <div class="discipline-card">
+          <div class="discipline-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+          </div>
+          <div class="discipline-title">Kinetic Typography</div>
+          <div class="discipline-desc">Choreographing letterforms in motion — syncing type rhythm to audio cues, beats, and narrative beats for maximum impact on brand and social content.</div>
+        </div>
+
+        <!-- 2. CGI Product Viz -->
+        <div class="discipline-card">
+          <div class="discipline-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+          </div>
+          <div class="discipline-title">CGI Product Visualization</div>
+          <div class="discipline-desc">Photo-real 3D rendering of consumer products using PBR materials, HDRI lighting, and multi-pass compositing workflows for e-commerce and broadcast campaigns.</div>
+        </div>
+
+        <!-- 3. Green Screen Keying -->
+        <div class="discipline-card">
+          <div class="discipline-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          </div>
+          <div class="discipline-title">Green Screen Keying</div>
+          <div class="discipline-desc">Clean, spill-suppressed chroma keys using Keylight, Primatte, and node-based Nuke pipelines — handling hair, glass, and fine detail edges with clinical accuracy.</div>
+        </div>
+
+        <!-- 4. Color Grading -->
+        <div class="discipline-card">
+          <div class="discipline-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="10.5" r="2.5"></circle><circle cx="8.5" cy="7.5" r="2.5"></circle><circle cx="6.5" cy="12.5" r="2.5"></circle><path d="M12 22v-2M12 8v2M4.2 20l1.4-1.4M18.4 5.6l1.4-1.4"></path></svg>
+          </div>
+          <div class="discipline-title">Color Grading</div>
+          <div class="discipline-desc">Scene-referred grading in DaVinci Resolve using ACES, node-tree isolation of skin tones, sky replacement mattes, and LUT delivery across multiple platform specs.</div>
+        </div>
+
+        <!-- 5. Sound Design -->
+        <div class="discipline-card">
+          <div class="discipline-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+          </div>
+          <div class="discipline-title">Sound Design</div>
+          <div class="discipline-desc">Crafting atmospheres, UI tones, foley layers, and music-to-picture sync that transforms a visually complete edit into a fully immersive sensory experience.</div>
+        </div>
+
+        <!-- 6. Motion Branding -->
+        <div class="discipline-card">
+          <div class="discipline-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </div>
+          <div class="discipline-title">Motion Branding</div>
+          <div class="discipline-desc">Building animated identity systems — logo reveals, brand stings, transition packages, and style frames that ensure a brand moves consistently across every touchpoint.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       7. EDITING PHILOSOPHY
+  ════════════════════════════════════════════════════════════════ -->
+  <section style="background-color: var(--bg-tertiary); padding: 5rem 0;">
     <div class="container fade-up" style="max-width: 800px; text-align: center;">
       <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Why Editing Matters</h2>
-      <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
-        An editor is the final writer of the script. In the editing room, pacing dictates tension, color dictates mood, and sound design breathes life into static frames. 
+      <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.85; margin-bottom: 1.75rem;">
+        An editor is the final writer of the script. In the editing room, pacing dictates tension, color dictates mood, and sound design breathes life into static frames. The edit is where a collection of raw captures — however brilliantly photographed — is sculpted into something with actual intent. Every decision made on the timeline is a statement about what the audience should feel, and when they should feel it.
       </p>
-      <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8;">
-        My goal isn't simply to assemble clips, but to forge an unbreakable emotional connection between the content and the viewer.
+
+      <div class="pull-quote">
+        "Cinema is a matter of what's in the frame and what's out."<br>
+        <span style="font-size: 0.85rem; font-style: normal; color: var(--text-muted); font-weight: 600;">— Martin Scorsese</span>
+      </div>
+
+      <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.85; margin-bottom: 1.75rem;">
+        My goal isn't simply to assemble clips, but to forge an unbreakable emotional connection between the content and the viewer. That means being willing to cut the beautiful shot that kills the momentum, to hold silence where the instinct is to score, and to let a single frame linger when three seconds of stillness communicate more than three minutes of exposition ever could.
+      </p>
+      <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.85;">
+        This approach — rigorous, deliberate, and always in service of the story — is what unifies every reel on this page, regardless of genre or format. Whether the deliverable is a 6-second bumper or a 45-minute documentary, the standard of intentionality remains identical. The viewer's time is sacred. Every frame should justify its existence.
       </p>
     </div>
   </section>
 
-  <!-- 6. CTA BANNER -->
+  <!-- ═══════════════════════════════════════════════════════════════
+       8. TESTIMONIAL
+  ════════════════════════════════════════════════════════════════ -->
+  <section style="padding: 5rem 0; background-color: var(--bg-secondary);">
+    <div class="container fade-up" style="text-align: center;">
+      <div class="section-header" style="margin-bottom: 3rem;">
+        <h2 style="font-size: 2.5rem;">From the Directors</h2>
+        <p>Words from collaborators who were in the room when the work was made.</p>
+      </div>
+      <div class="testimonial-card">
+        <div class="star-row">
+          <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+        </div>
+        <p class="testimonial-body">
+          "Working on the campaign with this studio was genuinely unlike any post-production experience I'd had before. Most editors receive the brief and disappear into the edit suite — you receive the brief and come back with editorial solutions that weren't in the original script. The VFX breakdown alone saved us six shoot days, and the final color grade turned what I'd secretly considered a compromised plate into the best-looking piece in our entire catalogue. I've recommended this work to every producer I know."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">MR</div>
+          <div>
+            <div class="testimonial-name">Marcus Renfield</div>
+            <div class="testimonial-role">Executive Producer &amp; Director — Helix Pictures, London</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       9. CTA BANNER
+  ════════════════════════════════════════════════════════════════ -->
   <section style="background-color: var(--primary); color: var(--secondary); text-align: center;">
     <div class="container fade-up" style="max-width: 700px;">
       <h2 style="font-size: 3rem; margin-bottom: 1.5rem; color: var(--secondary);">Impressed by the reels?</h2>
@@ -156,7 +646,7 @@
             <a href="reels.html">Demo Reels</a>
             <a href="software.html">Software</a>
             <a href="projects.html">Case Studies</a>
-            <a href="process.html">Process & Times</a>
+            <a href="process.html">Process &amp; Times</a>
           </div>
         </div>
 
