@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | Creative Studio</title>
+  <meta name="description"
+    content="Create your Creative Studio account and start collaborating on world-class motion graphics and VFX projects.">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    /* ── Reset cursor: style.css hides it globally on pointer:fine devices ── */
+    @media (pointer: fine) {
+
+      body,
+      a,
+      button,
+      input,
+      textarea,
+      select {
+        cursor: auto !important;
+      }
+
+      a,
+      button {
+        cursor: pointer !important;
+      }
+    }
+
+    /* ── Auth Split-Screen Layout ── */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .auth-split {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Left Panel (reversed - form is on left for sign up) ── */
+    .auth-panel-form {
+      width: 520px;
+      min-height: 100vh;
+      background-color: var(--bg-primary);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3rem 3.5rem;
+      position: relative;
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+    }
+
+    .panel-form-top {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .auth-theme-btn {
+      background: none;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: var(--transition);
+      color: var(--text-secondary);
+      width: 38px;
+      height: 38px;
+    }
+
+    .auth-theme-btn:hover {
+      background-color: var(--bg-secondary);
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .signin-prompt {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .signin-prompt a {
+      color: var(--primary);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .signin-prompt a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Form header ── */
+    .form-header {
+      margin-bottom: 2rem;
+      padding-top: 3.5rem;
+    }
+
+    .form-header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .form-header p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* ── Social login ── */
+    .social-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-social-auth {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      height: 46px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-main);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-social-auth:hover {
+      background-color: var(--bg-secondary);
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    /* ── OR Divider ── */
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .auth-divider::before,
+    .auth-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: var(--border);
+    }
+
+    /* ── Form fields ── */
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .field-group {
+      margin-bottom: 1.1rem;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.45rem;
+    }
+
+    .field-input-wrap {
+      position: relative;
+    }
+
+    .field-input {
+      width: 100%;
+      height: 48px;
+      padding: 0 1.2rem;
+      background-color: var(--bg-secondary);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-family: var(--font-main);
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .field-input:focus {
+      border-color: var(--primary);
+      outline: none;
+      background-color: var(--bg-primary);
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+    }
+
+    [data-theme="dark"] .field-input:focus {
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
+    }
+
+    .field-input.has-icon {
+      padding-right: 3rem;
+    }
+
+    .field-icon-btn {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 0;
+      transition: var(--transition);
+    }
+
+    .field-icon-btn:hover {
+      color: var(--primary);
+    }
+
+    /* ── Password strength ── */
+    .strength-bar-wrap {
+      display: flex;
+      gap: 4px;
+      margin-top: 0.5rem;
+    }
+
+    .strength-seg {
+      flex: 1;
+      height: 3px;
+      border-radius: 99px;
+      background-color: var(--border);
+      transition: background-color 0.3s ease;
+    }
+
+    .strength-seg.active-weak {
+      background-color: var(--error);
+    }
+
+    .strength-seg.active-medium {
+      background-color: var(--warning);
+    }
+
+    .strength-seg.active-strong {
+      background-color: var(--success);
+    }
+
+    .strength-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+    }
+
+    /* ── Terms checkbox ── */
+    .terms-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .terms-row input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      margin-top: 2px;
+      flex-shrink: 0;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .terms-row label {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      cursor: pointer;
+    }
+
+    .terms-row a {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .terms-row a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Submit button ── */
+    .btn-submit {
+      width: 100%;
+      height: 52px;
+      background-color: var(--primary);
+      color: var(--secondary);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-main);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-submit:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    [data-theme="dark"] .btn-submit:hover {
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-submit svg {
+      transition: transform 0.2s ease;
+    }
+
+    .btn-submit:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* ── Error states ── */
+    .field-input.error {
+      border-color: var(--error);
+    }
+
+    .field-error {
+      font-size: 0.78rem;
+      color: var(--error);
+      margin-top: 0.35rem;
+      display: none;
+    }
+
+    .field-error.visible {
+      display: block;
+    }
+
+    /* ── Loading ── */
+    .btn-submit.loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+
+    .btn-submit.loading .btn-text {
+      display: none;
+    }
+
+    .btn-submit.loading .spinner {
+      display: block;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ── Right promo panel ── */
+    .auth-panel-promo {
+      flex: 1;
+      background: #000;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 3rem;
+      overflow: hidden;
+    }
+
+    .auth-panel-promo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(255, 255, 255, 0.07) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .auth-panel-promo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .right-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      position: relative;
+      z-index: 2;
+      text-decoration: none;
+    }
+
+    .right-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: #fff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .right-logo-icon svg {
+      color: #000;
+    }
+
+    .promo-content {
+      margin-top: auto;
+      margin-bottom: auto;
+      position: relative;
+      z-index: 2;
+      padding-top: 4rem;
+    }
+
+    .promo-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 2rem;
+    }
+
+    .promo-tag-dot {
+      width: 7px;
+      height: 7px;
+      background: #fff;
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(0.8);
+      }
+    }
+
+    .promo-heading {
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .promo-heading span {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .promo-desc {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.75;
+      max-width: 420px;
+      margin-bottom: 3rem;
+    }
+
+    /* Perks list */
+    .perks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .perk-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .perk-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .perk-icon svg {
+      color: #fff;
+      opacity: 0.85;
+    }
+
+    .perk-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .perk-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .perk-subtitle {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .promo-footer {
+      position: relative;
+      z-index: 2;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.8rem;
+      margin-top: auto;
+      padding-top: 2rem;
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .orb-1 {
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.06);
+      bottom: -50px;
+      right: -100px;
+    }
+
+    .orb-2 {
+      width: 180px;
+      height: 180px;
+      background: rgba(255, 255, 255, 0.04);
+      top: 120px;
+      left: -30px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 960px) {
+      .auth-split {
+        flex-direction: column-reverse;
+      }
+
+      .auth-panel-promo {
+        min-height: 320px;
+        padding: 2rem;
+      }
+
+      .auth-panel-form {
+        width: 100%;
+        padding: 2.5rem 2rem;
+        border-right: none;
+        border-top: 1px solid var(--border);
+      }
+
+      .panel-form-top {
+        top: 1.5rem;
+        right: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .auth-panel-form {
+        padding: 2rem 1.5rem;
+      }
+
+      .social-row {
+        grid-template-columns: 1fr;
+      }
+
+      .field-row {
+        grid-template-columns: 1fr;
+      }
+
+      .promo-heading {
+        font-size: 2rem;
+      }
+
+      .form-header {
+        padding-top: 4rem;
+      }
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .form-header {
+      animation: fadeInUp 0.5s ease both;
+    }
+
+    .social-row {
+      animation: fadeInUp 0.5s 0.05s ease both;
+    }
+
+    .auth-divider {
+      animation: fadeInUp 0.5s 0.1s ease both;
+    }
+
+    .field-row {
+      animation: fadeInUp 0.5s 0.15s ease both;
+    }
+
+    .field-group {
+      animation: fadeInUp 0.5s ease both;
+    }
+
+    .terms-row {
+      animation: fadeInUp 0.5s 0.25s ease both;
+    }
+
+    .btn-submit {
+      animation: fadeInUp 0.5s 0.3s ease both;
+    }
+
+    /* Progress steps */
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .step-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--border);
+      transition: var(--transition);
+    }
+
+    .step-dot.active {
+      background-color: var(--primary);
+      width: 24px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="auth-split">
+    <!-- ═══ PROMO PANEL (RIGHT) ═══ -->
+    <div class="auth-panel-promo">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+
+      <a href="/index.html" class="right-logo">
+        <div class="right-logo-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+            <line x1="12" y1="22.08" x2="12" y2="12" />
+          </svg>
+        </div>
+        STUDIO
+      </a>
+
+      <div class="promo-content">
+        <div class="promo-tag">
+          <span class="promo-tag-dot"></span>
+          Start for free
+        </div>
+
+        <h2 class="promo-heading">
+          Bring your<br>
+          <span>vision to</span><br>
+          life here.
+        </h2>
+
+        <p class="promo-desc">
+          Create an account and get access to professional tools, dedicated support, and a portfolio that stands out.
+        </p>
+
+        <!-- Perks -->
+        <div class="perks-list">
+          <div class="perk-item">
+            <div class="perk-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+            </div>
+            <div class="perk-text">
+              <span class="perk-title">Real-time Project Tracking</span>
+              <span class="perk-subtitle">Monitor every deliverable in your dashboard</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+            </div>
+            <div class="perk-text">
+              <span class="perk-title">Secure File Management</span>
+              <span class="perk-subtitle">Encrypted storage for all your assets</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <div class="perk-text">
+              <span class="perk-title">Direct Team Collaboration</span>
+              <span class="perk-subtitle">Review, comment, and approve together</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                <polyline points="17 6 23 6 23 12" />
+              </svg>
+            </div>
+            <div class="perk-text">
+              <span class="perk-title">Priority Support</span>
+              <span class="perk-subtitle">Dedicated line for all account holders</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="promo-footer">© 2026 Creative Studio. All rights reserved.</div>
+    </div>
+
+    <!-- ═══ FORM PANEL (LEFT) ═══ -->
+    <div class="auth-panel-form">
+
+      <!-- Top controls -->
+      <div class="panel-form-top">
+        <span class="signin-prompt">Have an account? <a href="/pages/signin.html">Sign in</a></span>
+        <button class="auth-theme-btn" id="authThemeToggle" title="Toggle Theme">
+          <svg class="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg class="theme-icon-light" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Progress dots -->
+      <div class="step-indicator">
+        <div class="step-dot active"></div>
+        <div class="step-dot"></div>
+        <div class="step-dot"></div>
+      </div>
+
+      <!-- Form header -->
+      <div class="form-header">
+        <h1>Create Account</h1>
+        <p>Join Creative Studio and start your first project today.</p>
+      </div>
+
+      <!-- Social login -->
+      <div class="social-row">
+        <button class="btn-social-auth" id="signupGoogle" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+              fill="#4285F4" />
+            <path
+              d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+              fill="#34A853" />
+            <path
+              d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+              fill="#FBBC05" />
+            <path
+              d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+              fill="#EA4335" />
+          </svg>
+          Google
+        </button>
+        <button class="btn-social-auth" id="signupBehance" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M7.803 5.731c.589 0 1.119.051 1.605.155.483.103.895.273 1.243.508.343.235.612.547.804.939.192.392.289.876.289 1.443 0 .619-.141 1.137-.421 1.551-.279.415-.69.757-1.231 1.026.741.209 1.299.57 1.667 1.089.369.52.554 1.146.554 1.875 0 .632-.129 1.177-.386 1.628-.258.453-.612.825-1.063 1.116-.45.289-.967.498-1.548.628-.579.129-1.176.194-1.791.194H.026V5.731h7.777zm-.351 4.932c.48 0 .876-.109 1.187-.326.312-.218.467-.568.467-1.051 0-.267-.051-.49-.152-.667-.1-.176-.234-.317-.405-.421-.169-.104-.364-.177-.587-.219-.22-.043-.449-.065-.693-.065H2.501v2.749h4.951zm.27 5.098c.269 0 .521-.026.757-.076.236-.051.44-.135.614-.255.175-.118.315-.277.416-.479.101-.2.152-.458.152-.77 0-.612-.176-1.049-.525-1.313-.35-.264-.818-.396-1.398-.396H2.501v3.289h5.221zm13.76-.574c-.322.65-.769 1.155-1.341 1.524-.572.369-1.237.576-2.004.629-.766.053-1.536-.022-2.306-.22-.772-.197-1.451-.538-2.042-1.02-.59-.483-1.054-1.098-1.39-1.843-.338-.745-.508-1.607-.508-2.58 0-.922.18-1.757.541-2.501.362-.745.838-1.376 1.431-1.895.591-.519 1.264-.909 2.014-1.172.752-.264 1.524-.396 2.32-.396.861 0 1.61.146 2.245.439.636.291 1.167.691 1.597 1.196.429.505.745 1.089.948 1.752.204.662.306 1.363.306 2.101v.763H15.56c.028.777.262 1.385.703 1.822.441.437 1.044.655 1.804.655.517 0 .964-.121 1.337-.363.372-.242.645-.568.821-.975h2.358v.084zm-2.433-4.198c-.025-.641-.221-1.163-.584-1.568-.365-.404-.885-.607-1.561-.607-.44 0-.812.078-1.116.231-.302.155-.553.346-.749.573-.197.228-.337.474-.419.74-.083.267-.123.525-.123.773h4.552v-.142zM15.06 4.431h5.567v1.335H15.06V4.431z" />
+          </svg>
+          Behance
+        </button>
+      </div>
+
+      <div class="auth-divider">or sign up with email</div>
+
+      <!-- Sign Up Form -->
+      <form id="signupForm" novalidate>
+
+        <!-- Name row -->
+        <div class="field-group">
+          <label class="field-label" for="firstName">First Name</label>
+          <input type="text" id="firstName" class="field-input" placeholder="Jane" autocomplete="given-name" required>
+          <span class="field-error" id="firstNameError">First name is required.</span>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="lastName">Last Name</label>
+          <input type="text" id="lastName" class="field-input" placeholder="Smith" autocomplete="family-name" required>
+          <span class="field-error" id="lastNameError">Last name is required.</span>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="signupEmail">Email Address</label>
+          <input type="email" id="signupEmail" class="field-input" placeholder="you@example.com" autocomplete="email"
+            required>
+          <span class="field-error" id="emailError">Please enter a valid email address.</span>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="signupPassword">Password</label>
+          <div class="field-input-wrap">
+            <input type="password" id="signupPassword" class="field-input has-icon"
+              placeholder="Create a strong password" autocomplete="new-password" required>
+            <button type="button" class="field-icon-btn" id="togglePassword" aria-label="Toggle password visibility">
+              <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <svg id="eyeClosed" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+                <line x1="1" y1="1" x2="23" y2="23" />
+              </svg>
+            </button>
+          </div>
+          <!-- Strength bar -->
+          <div class="strength-bar-wrap" id="strengthBar">
+            <div class="strength-seg" id="seg1"></div>
+            <div class="strength-seg" id="seg2"></div>
+            <div class="strength-seg" id="seg3"></div>
+            <div class="strength-seg" id="seg4"></div>
+          </div>
+          <div class="strength-label" id="strengthLabel">Use 8+ characters, numbers & symbols</div>
+          <span class="field-error" id="passwordError">Password must be at least 8 characters.</span>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="confirmPassword">Confirm Password</label>
+          <div class="field-input-wrap">
+            <input type="password" id="confirmPassword" class="field-input" placeholder="Repeat your password"
+              autocomplete="new-password" required>
+          </div>
+          <span class="field-error" id="confirmError">Passwords do not match.</span>
+        </div>
+
+        <!-- Terms -->
+        <div class="terms-row">
+          <input type="checkbox" id="agreeTerms">
+          <label for="agreeTerms">
+            I agree to the <a href="/pages/terms.html">Terms of Service</a> and <a href="/pages/privacy.html">Privacy
+              Policy</a>. I consent to receiving
+            project-related communications.
+          </label>
+        </div>
+
+        <button type="submit" class="btn-submit" id="signupBtn">
+          <span class="btn-text">
+            Create Account
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" style="margin-left:4px;">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </span>
+          <div class="spinner"></div>
+        </button>
+
+      </form>
+    </div>
+
+  </div>
+
+  <script>
+    // ── Theme Toggle ──────────────────────────────────────────
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('authThemeToggle');
+    const darkIcon = themeBtn.querySelector('.theme-icon-dark');
+    const lightIcon = themeBtn.querySelector('.theme-icon-light');
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', savedTheme);
+    if (savedTheme === 'dark') {
+      darkIcon.style.display = 'none';
+      lightIcon.style.display = '';
+    }
+
+    themeBtn.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      darkIcon.style.display = next === 'dark' ? 'none' : '';
+      lightIcon.style.display = next === 'dark' ? '' : 'none';
+    });
+
+    // ── Password Toggle ───────────────────────────────────────
+    const togglePwd = document.getElementById('togglePassword');
+    const pwdInput = document.getElementById('signupPassword');
+    const eyeOpen = document.getElementById('eyeOpen');
+    const eyeClosed = document.getElementById('eyeClosed');
+
+    togglePwd.addEventListener('click', () => {
+      const isText = pwdInput.type === 'text';
+      pwdInput.type = isText ? 'password' : 'text';
+      eyeOpen.style.display = isText ? '' : 'none';
+      eyeClosed.style.display = isText ? 'none' : '';
+    });
+
+    // ── Password Strength ─────────────────────────────────────
+    const seg1 = document.getElementById('seg1');
+    const seg2 = document.getElementById('seg2');
+    const seg3 = document.getElementById('seg3');
+    const seg4 = document.getElementById('seg4');
+    const strengthLabel = document.getElementById('strengthLabel');
+    const segs = [seg1, seg2, seg3, seg4];
+
+    function getStrength(pwd) {
+      let score = 0;
+      if (pwd.length >= 8) score++;
+      if (pwd.length >= 12) score++;
+      if (/[A-Z]/.test(pwd) && /[a-z]/.test(pwd)) score++;
+      if (/[0-9]/.test(pwd) && /[^A-Za-z0-9]/.test(pwd)) score++;
+      return score;
+    }
+
+    pwdInput.addEventListener('input', () => {
+      const pwd = pwdInput.value;
+      const score = getStrength(pwd);
+      const labels = ['', 'Weak', 'Fair', 'Good', 'Strong'];
+      const classes = ['', 'active-weak', 'active-medium', 'active-medium', 'active-strong'];
+
+      segs.forEach((seg, i) => {
+        seg.className = 'strength-seg';
+        if (i < score && pwd.length > 0) {
+          seg.classList.add(classes[score]);
+        }
+      });
+
+      strengthLabel.textContent = pwd.length === 0
+        ? 'Use 8+ characters, numbers & symbols'
+        : labels[score] ? `Password strength: ${labels[score]}` : 'Too short';
+
+      // Clear error if valid
+      if (pwd.length >= 8) {
+        pwdInput.classList.remove('error');
+        document.getElementById('passwordError').classList.remove('visible');
+      }
+    });
+
+    // ── Form Validation ───────────────────────────────────────
+    const form = document.getElementById('signupForm');
+    const firstNameInput = document.getElementById('firstName');
+    const lastNameInput = document.getElementById('lastName');
+    const emailInput = document.getElementById('signupEmail');
+    const confirmInput = document.getElementById('confirmPassword');
+    const agreeCheckbox = document.getElementById('agreeTerms');
+    const submitBtn = document.getElementById('signupBtn');
+
+    function validateEmail(val) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+    }
+
+    // Live clear errors on input
+    firstNameInput.addEventListener('input', () => {
+      if (firstNameInput.value.trim()) {
+        firstNameInput.classList.remove('error');
+        document.getElementById('firstNameError').classList.remove('visible');
+      }
+    });
+
+    lastNameInput.addEventListener('input', () => {
+      if (lastNameInput.value.trim()) {
+        lastNameInput.classList.remove('error');
+        document.getElementById('lastNameError').classList.remove('visible');
+      }
+    });
+
+    emailInput.addEventListener('input', () => {
+      if (validateEmail(emailInput.value)) {
+        emailInput.classList.remove('error');
+        document.getElementById('emailError').classList.remove('visible');
+      }
+    });
+
+    confirmInput.addEventListener('input', () => {
+      if (confirmInput.value === pwdInput.value) {
+        confirmInput.classList.remove('error');
+        document.getElementById('confirmError').classList.remove('visible');
+      }
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+
+      if (!firstNameInput.value.trim()) {
+        firstNameInput.classList.add('error');
+        document.getElementById('firstNameError').classList.add('visible');
+        valid = false;
+      }
+      if (!lastNameInput.value.trim()) {
+        lastNameInput.classList.add('error');
+        document.getElementById('lastNameError').classList.add('visible');
+        valid = false;
+      }
+      if (!validateEmail(emailInput.value)) {
+        emailInput.classList.add('error');
+        document.getElementById('emailError').classList.add('visible');
+        valid = false;
+      }
+      if (pwdInput.value.length < 8) {
+        pwdInput.classList.add('error');
+        document.getElementById('passwordError').classList.add('visible');
+        valid = false;
+      }
+      if (confirmInput.value !== pwdInput.value) {
+        confirmInput.classList.add('error');
+        document.getElementById('confirmError').classList.add('visible');
+        valid = false;
+      }
+      if (!agreeCheckbox.checked) {
+        alert('Please agree to the Terms of Service to continue.');
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      // Simulate loading
+      submitBtn.classList.add('loading');
+      setTimeout(() => {
+        submitBtn.classList.remove('loading');
+        alert('Account created! (Demo only — connect your backend here.)');
+      }, 2000);
+    });
+
+    // ── Social Buttons ────────────────────────────────────────
+    document.getElementById('signupGoogle').addEventListener('click', () => {
+      alert('Google Sign-Up coming soon!');
+    });
+    document.getElementById('signupBehance').addEventListener('click', () => {
+      alert('Behance Sign-Up coming soon!');
+    });
+  </script>
+
+</body>
+
+</html>

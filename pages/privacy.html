@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | Creative Studio</title>
+  <meta name="description" content="Learn how Creative Studio collects, uses, and protects your personal data. Your privacy matters to us.">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    @media (pointer: fine) {
+      body, a, button, input, textarea, select { cursor: auto !important; }
+      a, button { cursor: pointer !important; }
+    }
+
+    .legal-hero {
+      padding-top: calc(var(--header-height) + 5rem);
+      padding-bottom: 4rem;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .legal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .legal-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin-bottom: 1rem; }
+    .legal-subtitle { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px; }
+    .legal-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .meta-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: var(--text-muted); }
+    .meta-item svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    .legal-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 4rem;
+      align-items: start;
+      padding-block: 5rem;
+    }
+
+    .legal-toc {
+      position: sticky;
+      top: calc(var(--header-height) + 2rem);
+    }
+
+    .toc-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .toc-list { display: flex; flex-direction: column; gap: 0.25rem; }
+
+    .toc-link {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      padding: 0.45rem 0.75rem;
+      border-radius: var(--radius-sm);
+      border-left: 2px solid transparent;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .toc-link:hover, .toc-link.active {
+      color: var(--primary);
+      background: var(--bg-secondary);
+      border-left-color: var(--primary);
+    }
+
+    .legal-article { max-width: 760px; }
+
+    .legal-section {
+      padding-bottom: 3.5rem;
+      margin-bottom: 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .legal-section:last-child { 
+      border-bottom: none; 
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .section-number {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+      color: var(--text-primary);
+      scroll-margin-top: calc(var(--header-height) + 2rem);
+    }
+
+    .legal-text {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+
+    .legal-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .legal-list li {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .legal-list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+      flex-shrink: 0;
+      margin-top: 0.55rem;
+    }
+
+    .highlight-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    /* Data table */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .data-table th {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      font-weight: 700;
+      color: var(--text-primary);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .data-table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    .data-table tr:hover td { background: var(--bg-secondary); }
+
+    /* Rights grid */
+    .rights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .right-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .right-card-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary);
+      margin-bottom: 0.25rem;
+    }
+
+    .right-card-icon svg { width: 18px; height: 18px; }
+    .right-card h4 { font-size: 0.9rem; font-weight: 700; }
+    .right-card p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+
+    .contact-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      margin-top: 1.5rem;
+    }
+
+    .contact-card-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--primary);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--secondary);
+    }
+
+    .contact-card h4 { font-size: 1.1rem; margin-bottom: 0.35rem; }
+    .contact-card p { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.75rem; }
+    .contact-card a { font-size: 0.9rem; font-weight: 700; color: var(--primary); }
+    .contact-card a:hover { text-decoration: underline; }
+
+    @media (max-width: 900px) {
+      .legal-layout { grid-template-columns: 1fr; }
+      .legal-toc { position: static; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; }
+      .data-table { font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container header-container">
+      <a href="/index.html" class="logo">
+        <div class="logo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+        <span>STUDIO</span>
+      </a>
+      <nav class="nav-menu" id="navMenu">
+        <a href="/index.html" class="nav-link">HOME<span class="nav-underline"></span></a>
+        <a href="/pages/reels.html" class="nav-link">REELS<span class="nav-underline"></span></a>
+        <a href="/pages/projects.html" class="nav-link">PROJECTS<span class="nav-underline"></span></a>
+        <a href="/pages/contact.html" class="nav-link">CONTACT<span class="nav-underline"></span></a>
+      </nav>
+      <div class="header-actions">
+        <button class="control-btn" id="themeToggle" title="Toggle Theme">
+          <svg class="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="theme-icon-light" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+        <div class="header-ctas">
+          <a href="/pages/signin.html" class="btn btn-ghost-nav" id="signinBtn">SIGN IN</a>
+          <a href="/pages/contact.html" class="btn btn-cta-nav" id="startProjectBtn">START A PROJECT</a>
+        </div>
+        <button class="mobile-toggle" id="mobileMenuToggle"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="legal-hero">
+    <div class="container">
+      <div class="legal-badge">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Privacy &amp; Data
+      </div>
+      <h1 class="legal-title">Privacy Policy</h1>
+      <p class="legal-subtitle">We take your privacy seriously. This policy explains what data we collect, why we collect it, and how we protect it.</p>
+      <div class="legal-meta">
+        <div class="meta-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Effective: January 1, 2026
+        </div>
+        <div class="meta-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          Last Updated: May 23, 2026
+        </div>
+        <div class="meta-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          ~6 min read
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <div class="container">
+    <div class="legal-layout">
+
+      <aside class="legal-toc">
+        <p class="toc-title">On this page</p>
+        <nav class="toc-list" id="tocNav">
+          <a href="#overview" class="toc-link">1. Overview</a>
+          <a href="#collect" class="toc-link">2. Data We Collect</a>
+          <a href="#use" class="toc-link">3. How We Use Data</a>
+          <a href="#sharing" class="toc-link">4. Data Sharing</a>
+          <a href="#cookies" class="toc-link">5. Cookies</a>
+          <a href="#retention" class="toc-link">6. Data Retention</a>
+          <a href="#rights" class="toc-link">7. Your Rights</a>
+          <a href="#security" class="toc-link">8. Security</a>
+          <a href="#children" class="toc-link">9. Children's Privacy</a>
+          <a href="#updates" class="toc-link">10. Policy Updates</a>
+          <a href="#contact" class="toc-link">11. Contact DPO</a>
+        </nav>
+      </aside>
+
+      <article class="legal-article">
+
+        <div class="legal-section" id="overview">
+          <span class="section-number">Section 01</span>
+          <h2 class="section-title">Overview</h2>
+          <p class="legal-text">Creative Studio ("we", "us", "our") is committed to protecting your personal information and your right to privacy. This Privacy Policy applies to all information collected through our website, client portal, and any related services.</p>
+          <div class="highlight-box">We do not sell, rent, or trade your personal information to third parties for their marketing purposes. Your data is used solely to deliver and improve our Services.</div>
+        </div>
+
+        <div class="legal-section" id="collect">
+          <span class="section-number">Section 02</span>
+          <h2 class="section-title">Data We Collect</h2>
+          <p class="legal-text">We collect different types of information depending on how you interact with us:</p>
+          <table class="data-table">
+            <thead><tr><th>Category</th><th>Examples</th><th>Source</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Identity</strong></td><td>Name, username, profile photo</td><td>You provide directly</td></tr>
+              <tr><td><strong>Contact</strong></td><td>Email, phone number</td><td>You provide directly</td></tr>
+              <tr><td><strong>Project Data</strong></td><td>Briefs, assets, feedback, files</td><td>Uploaded by you</td></tr>
+              <tr><td><strong>Technical</strong></td><td>IP address, browser, device type, pages visited</td><td>Collected automatically</td></tr>
+              <tr><td><strong>Communications</strong></td><td>Emails, support messages, form submissions</td><td>You provide directly</td></tr>
+              <tr><td><strong>Financial</strong></td><td>Invoice history (no full card numbers stored)</td><td>Payment processor</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="legal-section" id="use">
+          <span class="section-number">Section 03</span>
+          <h2 class="section-title">How We Use Data</h2>
+          <p class="legal-text">We use the information we collect to:</p>
+          <ul class="legal-list">
+            <li>Deliver, manage, and improve the Services and your project experience</li>
+            <li>Create and manage your account and authenticate your identity</li>
+            <li>Process payments and send invoices and receipts</li>
+            <li>Communicate important service updates, project milestones, and support responses</li>
+            <li>Comply with legal obligations and enforce our Terms</li>
+            <li>Analyze usage patterns to improve platform performance and user experience</li>
+          </ul>
+          <p class="legal-text">We rely on the following legal bases to process your data: performance of a contract, legitimate interests, your consent (where required), and legal obligation.</p>
+        </div>
+
+        <div class="legal-section" id="sharing">
+          <span class="section-number">Section 04</span>
+          <h2 class="section-title">Data Sharing</h2>
+          <p class="legal-text">We share your data only with trusted third parties who assist in delivering our Services, under strict confidentiality agreements:</p>
+          <ul class="legal-list">
+            <li><strong>Payment Processors:</strong> Stripe or equivalent, for secure transaction handling</li>
+            <li><strong>Cloud Storage:</strong> Encrypted file storage for project asset delivery</li>
+            <li><strong>Analytics:</strong> Anonymized usage data to improve platform performance</li>
+            <li><strong>Email Providers:</strong> For transactional and project-related communications</li>
+          </ul>
+          <p class="legal-text">We may also disclose your information if required to do so by law, or if we believe such action is necessary to comply with a legal obligation, protect our rights, or investigate fraud.</p>
+        </div>
+
+        <div class="legal-section" id="cookies">
+          <span class="section-number">Section 05</span>
+          <h2 class="section-title">Cookies &amp; Tracking</h2>
+          <p class="legal-text">We use cookies and similar technologies to enhance your experience on our site. The cookies we use include:</p>
+          <ul class="legal-list">
+            <li><strong>Essential Cookies:</strong> Required for authentication and core platform functionality. Cannot be disabled.</li>
+            <li><strong>Preference Cookies:</strong> Remember your settings (e.g., dark mode, language). Expire after 30 days.</li>
+            <li><strong>Analytics Cookies:</strong> Help us understand site usage. Can be opted out via our cookie banner.</li>
+          </ul>
+          <p class="legal-text">You can control cookie settings through your browser. Disabling certain cookies may affect the functionality of our Services.</p>
+        </div>
+
+        <div class="legal-section" id="retention">
+          <span class="section-number">Section 06</span>
+          <h2 class="section-title">Data Retention</h2>
+          <p class="legal-text">We retain your personal data only for as long as necessary to fulfill the purposes described in this policy. Specifically:</p>
+          <ul class="legal-list">
+            <li>Account data is retained for the duration of your account plus 2 years after deletion</li>
+            <li>Project files are retained for 90 days post-delivery, then permanently deleted unless archived by agreement</li>
+            <li>Financial records are retained for 7 years as required by applicable accounting law</li>
+            <li>Communications and support records are retained for 3 years</li>
+          </ul>
+          <p class="legal-text">You may request early deletion of your data at any time, subject to our legal retention obligations.</p>
+        </div>
+
+        <div class="legal-section" id="rights">
+          <span class="section-number">Section 07</span>
+          <h2 class="section-title">Your Rights</h2>
+          <p class="legal-text">Depending on your jurisdiction, you may have the following rights regarding your personal data:</p>
+          <div class="rights-grid">
+            <div class="right-card">
+              <div class="right-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+              <h4>Right to Access</h4>
+              <p>Request a copy of the personal data we hold about you.</p>
+            </div>
+            <div class="right-card">
+              <div class="right-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+              <h4>Right to Rectification</h4>
+              <p>Correct inaccurate or incomplete data about you.</p>
+            </div>
+            <div class="right-card">
+              <div class="right-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></div>
+              <h4>Right to Erasure</h4>
+              <p>Request deletion of your personal data ("right to be forgotten").</p>
+            </div>
+            <div class="right-card">
+              <div class="right-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+              <h4>Data Portability</h4>
+              <p>Receive your data in a structured, machine-readable format.</p>
+            </div>
+            <div class="right-card">
+              <div class="right-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div>
+              <h4>Right to Object</h4>
+              <p>Object to processing of your data based on legitimate interests.</p>
+            </div>
+            <div class="right-card">
+              <div class="right-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+              <h4>Withdraw Consent</h4>
+              <p>Revoke consent at any time for consent-based processing.</p>
+            </div>
+          </div>
+          <p class="legal-text">To exercise any of these rights, contact our Data Protection Officer at the address below. We will respond within 30 days.</p>
+        </div>
+
+        <div class="legal-section" id="security">
+          <span class="section-number">Section 08</span>
+          <h2 class="section-title">Security</h2>
+          <p class="legal-text">We implement industry-standard security measures to protect your data:</p>
+          <ul class="legal-list">
+            <li>All data is transmitted over HTTPS with TLS 1.2+ encryption</li>
+            <li>Passwords are hashed using bcrypt with a cost factor of 12+</li>
+            <li>Access to production systems is restricted to authorized personnel via MFA</li>
+            <li>Regular security audits and penetration testing are conducted</li>
+            <li>Project files are stored in encrypted cloud storage with access logging</li>
+          </ul>
+          <div class="highlight-box">In the event of a data breach affecting your rights or freedoms, we will notify you within 72 hours of becoming aware of the incident, as required by applicable data protection law.</div>
+        </div>
+
+        <div class="legal-section" id="children">
+          <span class="section-number">Section 09</span>
+          <h2 class="section-title">Children's Privacy</h2>
+          <p class="legal-text">Our Services are not directed to individuals under the age of 16. We do not knowingly collect personal data from children. If you believe we have inadvertently collected data from a minor, please contact us immediately and we will take steps to delete such information promptly.</p>
+        </div>
+
+        <div class="legal-section" id="updates">
+          <span class="section-number">Section 10</span>
+          <h2 class="section-title">Policy Updates</h2>
+          <p class="legal-text">We may update this Privacy Policy periodically to reflect changes in our practices, technology, or legal requirements. When we make significant changes, we will:</p>
+          <ul class="legal-list">
+            <li>Update the "Last Updated" date at the top of this page</li>
+            <li>Send an email notification to registered account holders</li>
+            <li>Display a prominent notice on our website for 30 days</li>
+          </ul>
+          <p class="legal-text">Your continued use of the Services after the effective date of changes constitutes acceptance of the updated policy.</p>
+        </div>
+
+        <div class="legal-section" id="contact">
+          <span class="section-number">Section 11</span>
+          <h2 class="section-title">Contact DPO</h2>
+          <p class="legal-text">For any privacy-related questions, data subject requests, or concerns, contact our Data Protection Officer:</p>
+          <div class="contact-card">
+            <div class="contact-card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h4>Data Protection Officer</h4>
+              <p>Submit data access requests, deletion requests, or report a privacy concern.</p>
+              <a href="mailto:privacy@creativestudio.com">privacy@creativestudio.com</a>
+            </div>
+          </div>
+        </div>
+
+      </article>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col" style="grid-column: span 2;">
+          <a href="/index.html" class="logo" style="margin-bottom: 1.5rem; display: inline-flex;">
+            <div class="logo-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+            <span>STUDIO</span>
+          </a>
+          <p style="margin-bottom: 1.5rem;">Independent Creative Direction, Motion Graphics, and Visual Effects.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <div class="footer-links">
+            <a href="/pages/reels.html">Demo Reels</a>
+            <a href="/pages/projects.html">Case Studies</a>
+            <a href="/pages/contact.html">Contact</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <div class="footer-links">
+            <a href="/pages/terms.html">Terms &amp; Conditions</a>
+            <a href="/pages/privacy.html">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Creative Studio. All rights reserved.</div>
+        <div style="display:flex;gap:1.5rem;">
+          <a href="/pages/terms.html" style="color:var(--text-muted);font-size:0.85rem;">Terms</a>
+          <a href="/pages/privacy.html" style="color:var(--text-muted);font-size:0.85rem;">Privacy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
+  <script src="/assets/js/script.js"></script>
+  <script>
+    const sections = document.querySelectorAll('.legal-section');
+    const tocLinks = document.querySelectorAll('.toc-link');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>
